@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:inkstop/widgets.dart';
+import 'package:inkstop/presentation/components/widgets.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -42,7 +42,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                       Text(
                         'Doc Details',
-                        style: GoogleFonts.italiana(color: Colors.white),
+                        style: GoogleFonts.averiaSansLibre(color: Colors.white),
                       ),
                     ],
                   ),
@@ -103,7 +103,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                       Text(
                         'Content',
-                        style: GoogleFonts.italiana(color: Colors.white),
+                        style: GoogleFonts.averiaSansLibre(color: Colors.white),
                       ),
                     ],
                   ),
@@ -141,7 +141,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                       Text(
                         'Info',
-                        style: GoogleFonts.italiana(color: Colors.white),
+                        style: GoogleFonts.averiaSansLibre(color: Colors.white),
                       ),
                     ],
                   ),
@@ -157,22 +157,73 @@ class HomeScreen extends StatelessWidget {
                       ),
                       Text(
                         'created by:',
-                        style: GoogleFonts.italiana(
+                        style: GoogleFonts.averiaSansLibre(
+                          fontWeight: FontWeight.w500,
                             color: const Color.fromARGB(255, 156, 153, 153)),
                       ),
                       Text(
                         'created at:',
-                        style: GoogleFonts.italiana(
+                        style: GoogleFonts.averiaSansLibre(
+                          fontWeight: FontWeight.w500,
                             color: const Color.fromARGB(255, 156, 153, 153)),
                       ),
+                    ],
+                  ),
+                ),
+                
+              ],
+            ),
+          ),
+          Container(
+            height: 120,
+            width: 405,
+            decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 58, 55, 59),
+                borderRadius: BorderRadius.circular(11)),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  height: 40,
+                  width: 405,
+                  decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(11),
+                          topLeft: Radius.circular(11)),
+                      color: Color.fromARGB(255, 46, 45, 46)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const SizedBox(
+                        width: 10,
+                      ),
                       Text(
-                        'Recipients:',
-                        style: GoogleFonts.italiana(
-                            color: const Color.fromARGB(255, 156, 153, 153)),
+                        'recipients',
+                        style: GoogleFonts.averiaSansLibre(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: 4,
+                      ),
+                      Container(
+                        height: 1,
+                        width: 405,
+                        decoration: BoxDecoration(color: Colors.white),
                       )
                     ],
                   ),
-                )
+                ),
+                
               ],
             ),
           )

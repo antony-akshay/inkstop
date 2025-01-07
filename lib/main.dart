@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:inkstop/doc_details.dart';
-import 'package:inkstop/search_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:inkstop/application/search_bloc/search_bloc.dart';
+import 'package:inkstop/presentation/doc_details.dart';
+import 'package:inkstop/presentation/search_screen/search_screen.dart';
 
 void main(List<String> args) {
   runApp(const MyApp());
@@ -11,9 +13,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: SearchScreen(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<SearchBloc>(
+          create: (context) => SearchBloc(),
+        ),
+      ],
+      child: BlocBuilder<SearchBloc, SearchState>(
+        builder: (context, themeState) {
+          return MaterialApp(
+            home: HomeScreen(),
+          );
+        },
+      ),
     );
   }
 }
