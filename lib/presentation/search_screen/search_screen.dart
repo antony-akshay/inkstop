@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inkstop/application/search_bloc/search_bloc.dart';
 import 'package:inkstop/presentation/components/widgets.dart';
+import 'package:inkstop/presentation/doc_details.dart';
 
 // ignore: must_be_immutable
 class SearchScreen extends StatelessWidget {
@@ -110,6 +111,10 @@ class SearchScreen extends StatelessWidget {
                   } else {
                     final doc = state.data.first;
                     return ListTile(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => HomeScreen(doc: doc,)));
+                      },
                       title: Text(
                         'Document ID: ${doc.docId}',
                         style: const TextStyle(color: Colors.white),

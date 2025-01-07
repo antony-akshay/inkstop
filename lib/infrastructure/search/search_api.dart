@@ -4,7 +4,7 @@ import 'package:inkstop/domain/core/docmodel.dart';
 import 'package:inkstop/domain/search/search_failures.dart';
 
 class DocSearchApi {
-  static Future<Either<SearchFailures,List<DocModel>>> fetchDoc(
+  static Future<Either<SearchFailures, List<DocModel>>> fetchDoc(
       {required String docid}) async {
     var headers = {'Content-Type': 'application/json'};
     var dio = Dio();

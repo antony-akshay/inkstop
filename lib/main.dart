@@ -11,6 +11,8 @@ void main(List<String> args) {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
       child: BlocBuilder<SearchBloc, SearchState>(
         builder: (context, themeState) {
           return MaterialApp(
-            home: HomeScreen(),
+            home: SearchScreen(),
           );
         },
       ),

@@ -8,8 +8,6 @@ class SearchState with _$SearchState {
           required Option<Either<SearchFailures, Unit>> succesFailure}) =
       _SearchState;
 
-  factory SearchState.initial() => SearchState(
-      isSubmitting: false,
-      succesFailure: const None(),
-      data: []);
+  factory SearchState.initial() =>
+      const SearchState(isSubmitting: false, succesFailure: None(), data: []);
 }

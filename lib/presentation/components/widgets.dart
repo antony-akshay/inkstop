@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 class Repeatingwidgets {
   static AppBar appbar(BuildContext context) {
     return AppBar(
-      toolbarHeight: 70,
+      toolbarHeight: 100,
       backgroundColor: const Color.fromARGB(255, 12, 12, 12),
       centerTitle: true,
       title: Text(
