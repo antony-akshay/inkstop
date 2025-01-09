@@ -106,20 +106,18 @@ class SearchScreen extends StatelessWidget {
                   if (state.isSubmitting) {
                     return const CircularProgressIndicator();
                   } else if (state.data.isEmpty) {
-                    return const Text('No documents found',
+                    return const Text('',
                         style: TextStyle(color: Colors.white));
                   } else {
                     final doc = state.data.first;
                     return ListTile(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => HomeScreen(doc: doc,)));
-                      },
-                      title: Text(
-                        'Document ID: ${doc.docId}',
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                      trailing: Text('created=${doc.createdBy}'),
+                      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context)=>HomeScreen(data: state.data))),
+                      leading: CircleAvatar(backgroundColor: Colors.grey,radius: 10,),
+                      title: Text(doc.docId,style: GoogleFonts.averiaSansLibre(
+                        fontSize: 14,
+                                    fontWeight: FontWeight.w900,
+                                    color: const Color.fromARGB(
+                                        255, 156, 153, 153)),),
                     );
                   }
                 },
