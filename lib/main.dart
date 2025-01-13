@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inkstop/application/search_bloc/search_bloc.dart';
-import 'package:inkstop/presentation/doc_details.dart';
+import 'package:inkstop/presentation/doc_create/newdoc.dart';
 import 'package:inkstop/presentation/search_screen/search_screen.dart';
 
 void main(List<String> args) {
@@ -24,7 +24,8 @@ class MyApp extends StatelessWidget {
       child: BlocBuilder<SearchBloc, SearchState>(
         builder: (context, themeState) {
           return MaterialApp(
-            home: SearchScreen(),
+            debugShowCheckedModeBanner: false,
+            home: Newdoc(),
           );
         },
       ),

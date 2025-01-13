@@ -9,9 +9,9 @@ class Repeatingwidgets {
       centerTitle: true,
       title: Text(
         'ink stop',
-        style: GoogleFonts.sansita(
+        style: GoogleFonts.permanentMarker(
             color: const Color.fromARGB(255, 165, 70, 243),
-            fontSize: 24,
+            fontSize: 30,
             fontWeight: FontWeight.w700),
       ),
       leading: const Icon(

@@ -35,7 +35,7 @@ class SearchScreen extends StatelessWidget {
                     ),
                     Container(
                       height: 35,
-                      width: 400,
+                      width: MediaQuery.of(context).size.width * 0.9,
                       decoration: const BoxDecoration(
                         color: Colors.white,
                       ),
@@ -111,13 +111,19 @@ class SearchScreen extends StatelessWidget {
                   } else {
                     final doc = state.data.first;
                     return ListTile(
-                      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context)=>HomeScreen(data: state.data))),
-                      leading: CircleAvatar(backgroundColor: Colors.grey,radius: 10,),
-                      title: Text(doc.docId,style: GoogleFonts.averiaSansLibre(
-                        fontSize: 14,
-                                    fontWeight: FontWeight.w900,
-                                    color: const Color.fromARGB(
-                                        255, 156, 153, 153)),),
+                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => HomeScreen(data: state.data))),
+                      leading: const CircleAvatar(
+                        backgroundColor: Colors.grey,
+                        radius: 10,
+                      ),
+                      title: Text(
+                        doc.docId,
+                        style: GoogleFonts.averiaSansLibre(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w900,
+                            color: const Color.fromARGB(255, 156, 153, 153)),
+                      ),
                     );
                   }
                 },
