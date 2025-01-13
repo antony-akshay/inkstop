@@ -38,6 +38,8 @@ class Newdoc extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 5, top: 10),
                       child: TextFormField(
+                         style: GoogleFonts.arvo(
+                            color: Colors.white, fontWeight: FontWeight.w500),
                         decoration: InputDecoration.collapsed(
                           hintText: 'Document name',
                           border: InputBorder.none,
@@ -64,6 +66,8 @@ class Newdoc extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 5, top: 10),
                       child: TextFormField(
+                         style: GoogleFonts.arvo(
+                            color: Colors.white, fontWeight: FontWeight.w500),
                         decoration: InputDecoration.collapsed(
                           hintText: 'Subject',
                           border: InputBorder.none,

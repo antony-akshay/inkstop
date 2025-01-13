@@ -77,6 +77,7 @@ class _ChipInputInTextFieldState extends State<ChipInputInTextField> {
                     hintText: 'Add...',
                     hintStyle: GoogleFonts.italiana(
                       color: const Color.fromARGB(255, 255, 255, 255),
+                      fontWeight: FontWeight.w300
                     ),
                     border: InputBorder.none,
                   ),

@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         builder: (context, themeState) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            home: Newdoc(),
+            home: SearchScreen(),
           );
         },
       ),
