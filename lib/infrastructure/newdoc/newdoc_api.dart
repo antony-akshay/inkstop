@@ -29,7 +29,8 @@ class CreateNewDoc implements INewdocFacade {
     try {
       var response = await dio.request("http://localhost:3000/api/documents",
           options: Options(method: 'POST', headers: headers), data: data);
-      if (response.statusCode == 200) {
+      print(response.statusCode);
+      if (response.statusCode == 201) {
         print(response.statusCode);
         var responseData = response.data;
         if (responseData['message'] == 'Some recipients do not exist') {
@@ -38,22 +39,22 @@ class CreateNewDoc implements INewdocFacade {
           print('hi');
           return left(const DocFailures.userDoesNotExist());
         }
-        return right(unit);
       } else if (response.statusCode == 400) {
         return left(const DocFailures.userDoesNotExist());
       }
       return left(const DocFailures.serverFailure());
-    } on DioException catch (e) {
+    } catch (e) {
       print("e is $e");
-      if (e.type == DioExceptionType.cancel) {
-        return left(const DocFailures.cancelledByUser());
-      } else if (e.type == DioExceptionType.badResponse) {
-        print('val');
-        return left(const DocFailures.serverFailure());
-      } else {
-        print(e);
-        return left(const DocFailures.serverFailure());
-      }
+      return left(const DocFailures.cancelledByUser());
+      // if (e.type == DioExceptionType.cancel) {
+      //   return left(const DocFailures.cancelledByUser());
+      // } else if (e.type == DioExceptionType.badResponse) {
+      //   print('val');
+      //   return left(const DocFailures.serverFailure());
+      // } else {
+      //   print(e);
+      //   return left(const DocFailures.serverFailure());
+      // }
     }
   }
 }
