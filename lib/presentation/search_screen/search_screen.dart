@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:inkstop/application/search_bloc/search_bloc.dart';
 import 'package:inkstop/presentation/components/widgets.dart';
 import 'package:inkstop/presentation/doc_details.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 // ignore: must_be_immutable
 class SearchScreen extends StatelessWidget {
@@ -74,7 +75,9 @@ class SearchScreen extends StatelessWidget {
                           color: const Color.fromARGB(255, 165, 70, 243),
                           borderRadius: BorderRadius.circular(10)),
                       child: state.isSubmitting
-                          ? const Center(child: CircularProgressIndicator())
+                          ?  Center(child: LoadingAnimationWidget.stretchedDots(
+                      size: 30,
+                      color: const Color.fromARGB(255, 181, 112, 238),))
                           : const Icon(
                               Icons.search_rounded,
                               color: Colors.white,
@@ -104,7 +107,7 @@ class SearchScreen extends StatelessWidget {
                 },
                 builder: (context, state) {
                   if (state.isSubmitting) {
-                    return const CircularProgressIndicator();
+                    return  Container();
                   } else if (state.data.isEmpty) {
                     return const Text('',
                         style: TextStyle(color: Colors.white));

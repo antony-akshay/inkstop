@@ -5,6 +5,7 @@ import 'package:inkstop/application/history_bloc/history_bloc.dart';
 import 'package:inkstop/domain/core/history_model.dart';
 import 'package:inkstop/presentation/components/widgets.dart';
 import 'package:intl/intl.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class HistoryScreen extends StatelessWidget {
   const HistoryScreen({super.key});
@@ -21,6 +22,7 @@ class HistoryScreen extends StatelessWidget {
           child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             BlocConsumer<HistoryBloc, HistoryState>(
               listener: (context, state) {
@@ -39,8 +41,11 @@ class HistoryScreen extends StatelessWidget {
               builder: (context, state) {
                 final history = state.model;
                 if (state.Search) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
+                  return Center(
+                    child: LoadingAnimationWidget.stretchedDots(
+                      size: 60,
+                      color: const Color.fromARGB(255, 181, 112, 238),
+                    ),
                   );
                 }
                 return Expanded(

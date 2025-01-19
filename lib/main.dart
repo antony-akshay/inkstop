@@ -7,6 +7,7 @@ import 'package:inkstop/application/newbloc_bloc/newdoc_bloc.dart';
 import 'package:inkstop/application/search_bloc/search_bloc.dart';
 import 'package:inkstop/domain/newdoc/I_newdoc_facade.dart';
 import 'package:inkstop/presentation/history_screen/history_screen.dart';
+import 'package:inkstop/presentation/mainScreen/mainscreen.dart';
 
 import 'injection.dart'; // Import the injection setup
 
@@ -23,8 +24,7 @@ class MyApp extends StatelessWidget {
     final INewdocFacade newdoc = GetIt.instance<INewdocFacade>();
     return MultiBlocProvider(
       providers: [
-        BlocProvider<HistoryBloc>(
-          create: (context) => HistoryBloc()),
+        BlocProvider<HistoryBloc>(create: (context) => HistoryBloc()),
         BlocProvider<SearchBloc>(
           create: (context) => SearchBloc(),
         ),
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         builder: (context, themeState) {
           return const MaterialApp(
             debugShowCheckedModeBanner: false,
-            home: HistoryScreen(),
+            home: Homescreen(),
           );
         },
       ),
