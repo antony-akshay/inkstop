@@ -5,6 +5,8 @@ import 'package:inkstop/application/newbloc_bloc/newdoc_bloc.dart';
 import 'package:inkstop/presentation/components/chip.dart';
 import 'package:inkstop/presentation/components/widgets.dart';
 
+@immutable
+// ignore: must_be_immutable
 class Newdoc extends StatelessWidget {
   Newdoc({super.key});
 
@@ -14,7 +16,7 @@ class Newdoc extends StatelessWidget {
   final List<String> _chipsList = [];
 
   void _onChipInputChanged(List<String> chips, String currentText) {
-    print('Chips: ${chips.join(', ')}');
+    // print('Chips: ${chips.join(', ')}');
     _chipsList.clear();
     _chipsList.addAll(chips);
   }
@@ -108,7 +110,8 @@ class Newdoc extends StatelessWidget {
                               color: Colors.white, fontWeight: FontWeight.w500),
                           maxLines:
                               null, // Allows the field to grow vertically as needed
-                          minLines: 1, // Ensures it starts with at least one line
+                          minLines:
+                              1, // Ensures it starts with at least one line
                           decoration: InputDecoration.collapsed(
                             hintText: 'Content',
                             border: InputBorder.none,

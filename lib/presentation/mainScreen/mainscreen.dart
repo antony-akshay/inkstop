@@ -27,10 +27,10 @@ class HomescreenState extends State<Homescreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:  const Color.fromRGBO(33, 33, 33, 1),
+      backgroundColor: Colors.transparent,
       bottomNavigationBar: CurvedNavigationBar(
-        color: Color.fromARGB(255, 165, 70, 243),
-        backgroundColor:  Color.fromRGBO(33, 33, 33, 1),
+        color: const Color.fromARGB(255, 165, 70, 243),
+        backgroundColor: Colors.transparent,
         animationDuration: const Duration(milliseconds: 300),
         onTap: (index) {
           setState(() {

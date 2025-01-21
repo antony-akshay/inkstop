@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:inkstop/application/history_bloc/history_bloc.dart';
 import 'package:inkstop/application/newbloc_bloc/newdoc_bloc.dart';
+import 'package:inkstop/application/notification_bloc/bloc/notification_bloc.dart';
 import 'package:inkstop/application/search_bloc/search_bloc.dart';
-import 'package:inkstop/domain/newdoc/I_newdoc_facade.dart';
-import 'package:inkstop/presentation/history_screen/history_screen.dart';
-import 'package:inkstop/presentation/mainScreen/mainscreen.dart';
+import 'package:inkstop/presentation/notification/notification_screen.dart';
 
 import 'injection.dart'; // Import the injection setup
 
@@ -21,9 +19,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final INewdocFacade newdoc = GetIt.instance<INewdocFacade>();
+    // final INewdocFacade newdoc = GetIt.instance<INewdocFacade>();
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (context) => NotificationBloc()),
         BlocProvider<HistoryBloc>(create: (context) => HistoryBloc()),
         BlocProvider<SearchBloc>(
           create: (context) => SearchBloc(),
@@ -36,7 +35,7 @@ class MyApp extends StatelessWidget {
         builder: (context, themeState) {
           return const MaterialApp(
             debugShowCheckedModeBanner: false,
-            home: Homescreen(),
+            home: NotificationScreen(),
           );
         },
       ),
