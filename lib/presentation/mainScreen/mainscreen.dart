@@ -2,6 +2,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:inkstop/presentation/doc_create/newdoc.dart';
 import 'package:inkstop/presentation/history_screen/history_screen.dart';
+import 'package:inkstop/presentation/notification/notification_screen.dart';
 import 'package:inkstop/presentation/search_screen/search_screen.dart';
 
 class Homescreen extends StatefulWidget {
@@ -16,12 +17,10 @@ class HomescreenState extends State<Homescreen> {
 
   // Define the pages for each navigation item
   final List<Widget> pages = [
-    const HistoryScreen(),
+    const HistoryScreen(username: 'akshay'),
     Newdoc(),
     SearchScreen(),
-    const Center(
-        child: Text("Notifications Page",
-            style: TextStyle(color: Colors.white, fontSize: 24))),
+    const NotificationScreen(username: 'akshay',)
   ];
 
   @override

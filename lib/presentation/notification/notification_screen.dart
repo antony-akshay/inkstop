@@ -5,18 +5,21 @@ import 'package:inkstop/application/notification_bloc/bloc/notification_bloc.dar
 import 'package:inkstop/presentation/components/widgets.dart';
 
 class NotificationScreen extends StatelessWidget {
-  const NotificationScreen({super.key});
+  final String username;
+  const NotificationScreen({super.key,required this.username});
 
   @override
   Widget build(BuildContext context) {
+
     BlocProvider.of<NotificationBloc>(context)
-        .add(const NotificationEvent.fetchNotification(username: 'user456'));
+        .add( NotificationEvent.fetchNotification(username: username));
 
     return Scaffold(
-      backgroundColor: Colors.grey[900],
+      backgroundColor: Colors.black,
       appBar: Repeatingwidgets.appbar(context),
       body: SafeArea(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             BlocConsumer<NotificationBloc, NotificationState>(
               listener: (context, state) {
@@ -25,10 +28,10 @@ class NotificationScreen extends StatelessWidget {
               builder: (context, state) {
                 // Ensure `state.model` is not null and has data.
                 final notif = state.model;
-                if (notif.isEmpty) {
+                if (notif == null || notif.isEmpty) {
                   return Center(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                      
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const SizedBox(
@@ -62,7 +65,7 @@ class NotificationScreen extends StatelessWidget {
 
                       return ListTile(
                         leading: const CircleAvatar(
-                          backgroundColor: Colors.blue,
+                          backgroundColor: const Color.fromARGB(255, 165, 70, 243),
                         ),
                         title: Text(
                           notification.documentName,

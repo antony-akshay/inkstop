@@ -16,7 +16,7 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900],
+      backgroundColor: Colors.black,
       appBar: Repeatingwidgets.appbar(context),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -35,21 +35,24 @@ class SearchScreen extends StatelessWidget {
                       width: 6,
                     ),
                     Container(
-                      height: 35,
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
+                      height: 45,
+                      width: 360,
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 255, 254, 254),
+                        borderRadius: BorderRadius.circular(6),
                       ),
-                      child: Center(
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 5),
-                          child: TextFormField(
-                            controller: docid,
-                            decoration: InputDecoration.collapsed(
-                                hintText: 'doc_id',
-                                border: InputBorder.none,
-                                hintStyle:
-                                    GoogleFonts.italiana(color: Colors.grey)),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 5, top: 10),
+                        child: TextFormField(
+                          controller: docid,
+                          style: GoogleFonts.averiaSansLibre(
+                              color: const Color.fromARGB(255, 0, 0, 0), fontWeight: FontWeight.w500),
+                          decoration: InputDecoration.collapsed(
+                            hintText: 'Document name',
+                            border: InputBorder.none,
+                            hintStyle: GoogleFonts.averiaSansLibre(
+                              color: const Color.fromARGB(255, 197, 190, 190),
+                            ),
                           ),
                         ),
                       ),

@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:inkstop/domain/core/docmodel.dart';
 import 'package:inkstop/presentation/components/widgets.dart';
 import 'package:inkstop/presentation/search_screen/search_screen.dart';
+import 'package:intl/intl.dart';
 
 class HomeScreen extends StatelessWidget {
   final List<DocModel> data;
@@ -13,7 +14,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900],
+      backgroundColor: Colors.black,
       appBar: Repeatingwidgets.appbar(context),
       body: SafeArea(
           child: SingleChildScrollView(
@@ -23,14 +24,20 @@ class HomeScreen extends StatelessWidget {
             children: [
               // Repeatingwidgets.appbar(context),
 
-              SizedBox(
-                height: 40,
-                child: IconButton(
-                    onPressed: () {
-                      Navigator.of(context).pop(MaterialPageRoute(
-                          builder: (context) => SearchScreen()));
-                    },
-                    icon: const Icon(Icons.arrow_back_ios_rounded)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(),
+                  SizedBox(
+                    height: 40,
+                    child: IconButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(MaterialPageRoute(
+                              builder: (context) => SearchScreen()));
+                        },
+                        icon: const Icon(Icons.arrow_back_ios_rounded)),
+                  ),
+                ],
               ),
               Container(
                 height: 90,
@@ -461,7 +468,7 @@ class HomeScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 8, right: 8),
                         child: Container(
                           margin: const EdgeInsets.symmetric(vertical: 8),
-                          width: 405,
+                          width: 360,
                           decoration: BoxDecoration(
                             color: containerColor,
                             borderRadius: BorderRadius.circular(16),
@@ -486,7 +493,8 @@ class HomeScreen extends StatelessWidget {
                             ),
                             trailing: Text(
                               docs.updatedAt != null
-                                  ? docs.updatedAt!.toIso8601String()
+                                  ? DateFormat('yyyy-MM-dd HH:mm:ss')
+                                            .format(docs.updatedAt!)
                                   : "N/A",
                               style: const TextStyle(
                                 color: Color.fromARGB(255, 255, 255, 255),

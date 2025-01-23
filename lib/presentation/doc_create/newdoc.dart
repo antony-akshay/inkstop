@@ -24,7 +24,7 @@ class Newdoc extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900],
+      backgroundColor: Colors.black,
       appBar: Repeatingwidgets.appbar(context),
       body: SafeArea(
         child: SingleChildScrollView(

@@ -5,7 +5,7 @@ import 'package:inkstop/application/history_bloc/history_bloc.dart';
 import 'package:inkstop/application/newbloc_bloc/newdoc_bloc.dart';
 import 'package:inkstop/application/notification_bloc/bloc/notification_bloc.dart';
 import 'package:inkstop/application/search_bloc/search_bloc.dart';
-import 'package:inkstop/presentation/notification/notification_screen.dart';
+import 'package:inkstop/presentation/mainScreen/mainscreen.dart';
 
 import 'injection.dart'; // Import the injection setup
 
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         builder: (context, themeState) {
           return const MaterialApp(
             debugShowCheckedModeBanner: false,
-            home: NotificationScreen(),
+            home: Homescreen(),
           );
         },
       ),

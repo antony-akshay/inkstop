@@ -68,7 +68,7 @@ class _ChipInputInTextFieldState extends State<ChipInputInTextField> {
               ),
               // TextField inside the Wrap
               SizedBox(
-                width: 382,
+                width: 365,
                 child: TextField(
                   style: GoogleFonts.italiana(
                       color: const Color.fromARGB(255, 243, 240, 240)),
