@@ -1,8 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inkstop/presentation/Auth/login_screen.dart';
+import 'package:inkstop/presentation/doc_details/doc_details.dart';
+import 'package:inkstop/presentation/mainScreen/mainscreen.dart';
 
 class SignupPage2 extends StatelessWidget {
-  const SignupPage2({super.key,required firstname,required lastname,required phone,required email});
+  String firstname;
+  String lastname;
+  String phone;
+  String email;
+
+  SignupPage2(
+      {super.key,
+      required this.firstname,
+      required this.lastname,
+      required this.phone,
+      required this.email});
+
+  TextEditingController usernameStr = TextEditingController();
+  TextEditingController passwordStr = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +46,14 @@ class SignupPage2 extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 5),
                       child: TextFormField(
+                        controller: usernameStr,
+                        style: GoogleFonts.averiaSansLibre(
+                            color: const Color.fromARGB(255, 0, 0, 0)),
                         decoration: InputDecoration.collapsed(
                             hintText: 'username',
                             border: InputBorder.none,
-                            hintStyle:
-                                GoogleFonts.italiana(color: Colors.grey)),
+                            hintStyle: GoogleFonts.averiaSansLibre(
+                                color: Colors.grey)),
                       ),
                     ),
                   ),
@@ -63,11 +82,15 @@ class SignupPage2 extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 5),
                       child: TextFormField(
+                        obscureText: true,
+                        controller: passwordStr,
+                        style: GoogleFonts.averiaSansLibre(
+                            color: const Color.fromARGB(255, 0, 0, 0)),
                         decoration: InputDecoration.collapsed(
                             hintText: 'password',
                             border: InputBorder.none,
-                            hintStyle:
-                                GoogleFonts.italiana(color: Colors.grey)),
+                            hintStyle: GoogleFonts.averiaSansLibre(
+                                color: Colors.grey)),
                       ),
                     ),
                   ),
@@ -87,18 +110,25 @@ class SignupPage2 extends StatelessWidget {
                   width: 5,
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(builder: (context) => LoginScreen()));
+                  },
                   child: Container(
                     height: 50,
                     width: 200,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Colors.indigo,
+                      color: const Color.fromARGB(255, 165, 70, 243),
                     ),
-                    child: const Center(
+                    child: Center(
                         child: Text(
-                      'next',
-                      style: TextStyle(color: Colors.white),
+                      'Sign up',
+                      style: GoogleFonts.italiana(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w900,
+                          letterSpacing: 3,
+                          color: Colors.white),
                     )),
                   ),
                 ),

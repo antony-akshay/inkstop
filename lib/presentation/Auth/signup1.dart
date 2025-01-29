@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:inkstop/presentation/signup2.dart';
+import 'package:inkstop/presentation/Auth/signup2.dart';
 
 // ignore: must_be_immutable
 class SignupPage1 extends StatelessWidget {
@@ -19,6 +19,7 @@ class SignupPage1 extends StatelessWidget {
           child: Padding(
         padding: const EdgeInsets.only(left: 3, right: 3),
         child: Column(
+          
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(
@@ -37,12 +38,14 @@ class SignupPage1 extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 5),
                       child: TextFormField(
+                         style:  GoogleFonts.averiaSansLibre(
+                                color: const Color.fromARGB(255, 0, 0, 0)),
                         controller: firstname,
                         decoration: InputDecoration.collapsed(
                             hintText: 'First name',
                             border: InputBorder.none,
-                            hintStyle:
-                                GoogleFonts.italiana(color: Colors.grey)),
+                            hintStyle: GoogleFonts.averiaSansLibre(
+                                color: Colors.grey)),
                       ),
                     ),
                   ),
@@ -71,12 +74,14 @@ class SignupPage1 extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 5),
                       child: TextFormField(
+                        style:  GoogleFonts.averiaSansLibre(
+                                color: const Color.fromARGB(255, 0, 0, 0)),
                         controller: lastname,
                         decoration: InputDecoration.collapsed(
                             hintText: 'last name',
                             border: InputBorder.none,
-                            hintStyle:
-                                GoogleFonts.italiana(color: Colors.grey)),
+                            hintStyle: GoogleFonts.averiaSansLibre(
+                                color: Colors.grey)),
                       ),
                     ),
                   ),
@@ -105,12 +110,14 @@ class SignupPage1 extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 5),
                       child: TextFormField(
+                         style:  GoogleFonts.averiaSansLibre(
+                                color: const Color.fromARGB(255, 0, 0, 0)),
                         controller: email,
                         decoration: InputDecoration.collapsed(
                             hintText: 'email',
                             border: InputBorder.none,
                             hintStyle:
-                                GoogleFonts.italiana(color: Colors.grey)),
+                                GoogleFonts.averiaSansLibre(color: Colors.grey)),
                       ),
                     ),
                   ),
@@ -139,12 +146,14 @@ class SignupPage1 extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 5),
                       child: TextFormField(
+                         style:  GoogleFonts.averiaSansLibre(
+                                color: const Color.fromARGB(255, 0, 0, 0)),
                         controller: phone,
                         decoration: InputDecoration.collapsed(
                             hintText: 'Phone',
                             border: InputBorder.none,
                             hintStyle:
-                                GoogleFonts.italiana(color: Colors.grey)),
+                                GoogleFonts.averiaSansLibre(color: Colors.grey)),
                       ),
                     ),
                   ),
@@ -170,22 +179,26 @@ class SignupPage1 extends StatelessWidget {
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => SignupPage2(
-                            firstname: firstname,
-                            lastname: lastname,
-                            phone: phone,
-                            email: email)));
+                            firstname: firstname.text,
+                            lastname: lastname.text,
+                            phone: phone.text,
+                            email: email.text)));
                   },
                   child: Container(
                     height: 50,
                     width: 200,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Colors.indigo,
+                      color: const Color.fromARGB(255, 165, 70, 243),
                     ),
-                    child: const Center(
+                    child:  Center(
                         child: Text(
                       'next',
-                      style: TextStyle(color: Colors.white),
+                      style: GoogleFonts.italiana(
+                        fontWeight: FontWeight.w900,
+                        color: Colors.white,
+                        fontSize: 17,
+                      ),
                     )),
                   ),
                 ),

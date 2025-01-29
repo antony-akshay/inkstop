@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inkstop/application/search_bloc/search_bloc.dart';
 import 'package:inkstop/presentation/components/widgets.dart';
-import 'package:inkstop/presentation/doc_details.dart';
+import 'package:inkstop/presentation/doc_details/doc_details.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 // ignore: must_be_immutable
@@ -118,7 +118,7 @@ class SearchScreen extends StatelessWidget {
                     final doc = state.data.first;
                     return ListTile(
                       onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => HomeScreen(data: state.data))),
+                          builder: (context) => DocDetails(data: state.data))),
                       leading: const CircleAvatar(
                         backgroundColor: Colors.grey,
                         radius: 10,

@@ -57,7 +57,7 @@ class _ChipInputInTextFieldState extends State<ChipInputInTextField> {
                 (chip) => Chip(
                   label: Text(
                     chip,
-                    style: GoogleFonts.italiana(
+                    style: GoogleFonts.averiaSansLibre(
                       color: const Color.fromARGB(255, 0, 0, 0),
                       fontWeight: FontWeight.w900,
                       fontSize: 14,
@@ -70,12 +70,12 @@ class _ChipInputInTextFieldState extends State<ChipInputInTextField> {
               SizedBox(
                 width: 365,
                 child: TextField(
-                  style: GoogleFonts.italiana(
+                  style: GoogleFonts.averiaSansLibre(
                       color: const Color.fromARGB(255, 243, 240, 240)),
                   controller: _controller,
                   decoration: InputDecoration(
                     hintText: 'Add...',
-                    hintStyle: GoogleFonts.italiana(
+                    hintStyle: GoogleFonts.averiaSansLibre(
                       color: const Color.fromARGB(255, 255, 255, 255),
                       fontWeight: FontWeight.w300
                     ),

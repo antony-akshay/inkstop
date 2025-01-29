@@ -48,12 +48,12 @@ class Newdoc extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 5, top: 10),
                         child: TextFormField(
                           controller: docname,
-                          style: GoogleFonts.arvo(
+                          style: GoogleFonts.averiaSansLibre(
                               color: Colors.white, fontWeight: FontWeight.w500),
                           decoration: InputDecoration.collapsed(
                             hintText: 'Document name',
                             border: InputBorder.none,
-                            hintStyle: GoogleFonts.italiana(
+                            hintStyle: GoogleFonts.averiaSansLibre(
                               color: const Color.fromARGB(255, 255, 255, 255),
                             ),
                           ),
@@ -77,12 +77,12 @@ class Newdoc extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 5, top: 10),
                         child: TextFormField(
                           controller: docSubject,
-                          style: GoogleFonts.arvo(
+                          style: GoogleFonts.averiaSansLibre(
                               color: Colors.white, fontWeight: FontWeight.w500),
                           decoration: InputDecoration.collapsed(
                             hintText: 'Subject',
                             border: InputBorder.none,
-                            hintStyle: GoogleFonts.italiana(
+                            hintStyle: GoogleFonts.averiaSansLibre(
                               color: const Color.fromARGB(255, 255, 255, 255),
                             ),
                           ),
@@ -96,17 +96,17 @@ class Newdoc extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      height: 120,
+                      height: 150,
                       width: 360,
                       decoration: BoxDecoration(
                         color: const Color.fromARGB(255, 153, 149, 149),
                         borderRadius: BorderRadius.circular(6),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 5, top: 10),
+                        padding: const EdgeInsets.only(left: 5, top: 10,bottom: 12),
                         child: TextFormField(
                           controller: docContent,
-                          style: GoogleFonts.arvo(
+                          style: GoogleFonts.averiaSansLibre(
                               color: Colors.white, fontWeight: FontWeight.w500),
                           maxLines:
                               null, // Allows the field to grow vertically as needed
@@ -115,7 +115,7 @@ class Newdoc extends StatelessWidget {
                           decoration: InputDecoration.collapsed(
                             hintText: 'Content',
                             border: InputBorder.none,
-                            hintStyle: GoogleFonts.italiana(
+                            hintStyle: GoogleFonts.averiaSansLibre(
                               color: const Color.fromARGB(255, 255, 255, 255),
                             ),
                           ),

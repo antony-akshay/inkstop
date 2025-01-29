@@ -5,10 +5,10 @@ import 'package:inkstop/presentation/components/widgets.dart';
 import 'package:inkstop/presentation/search_screen/search_screen.dart';
 import 'package:intl/intl.dart';
 
-class HomeScreen extends StatelessWidget {
+class DocDetails extends StatelessWidget {
   final List<DocModel> data;
 
-  HomeScreen({super.key, required this.data});
+  DocDetails({super.key, required this.data});
 
   late final doc = data;
   @override
@@ -27,7 +27,7 @@ class HomeScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(),
+                  const SizedBox(),
                   SizedBox(
                     height: 40,
                     child: IconButton(
@@ -494,7 +494,7 @@ class HomeScreen extends StatelessWidget {
                             trailing: Text(
                               docs.updatedAt != null
                                   ? DateFormat('yyyy-MM-dd HH:mm:ss')
-                                            .format(docs.updatedAt!)
+                                      .format(docs.updatedAt!)
                                   : "N/A",
                               style: const TextStyle(
                                 color: Color.fromARGB(255, 255, 255, 255),
