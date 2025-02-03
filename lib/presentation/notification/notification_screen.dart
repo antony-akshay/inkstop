@@ -6,13 +6,12 @@ import 'package:inkstop/presentation/components/widgets.dart';
 
 class NotificationScreen extends StatelessWidget {
   final String username;
-  const NotificationScreen({super.key,required this.username});
+  const NotificationScreen({super.key, required this.username});
 
   @override
   Widget build(BuildContext context) {
-
     BlocProvider.of<NotificationBloc>(context)
-        .add( NotificationEvent.fetchNotification(username: username));
+        .add(NotificationEvent.fetchNotification(username: username));
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -28,10 +27,9 @@ class NotificationScreen extends StatelessWidget {
               builder: (context, state) {
                 // Ensure `state.model` is not null and has data.
                 final notif = state.model;
-                if (notif == null || notif.isEmpty) {
+                if (notif.isEmpty) {
                   return Center(
                     child: Column(
-                      
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const SizedBox(
@@ -65,7 +63,7 @@ class NotificationScreen extends StatelessWidget {
 
                       return ListTile(
                         leading: const CircleAvatar(
-                          backgroundColor: const Color.fromARGB(255, 165, 70, 243),
+                          backgroundColor: Color.fromARGB(255, 165, 70, 243),
                         ),
                         title: Text(
                           notification.documentName,

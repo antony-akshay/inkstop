@@ -24,7 +24,7 @@ class SearchScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(
-                height: 20,
+                height: 25,
               ),
               Form(
                 key: _formKey,
@@ -46,7 +46,8 @@ class SearchScreen extends StatelessWidget {
                         child: TextFormField(
                           controller: docid,
                           style: GoogleFonts.averiaSansLibre(
-                              color: const Color.fromARGB(255, 0, 0, 0), fontWeight: FontWeight.w500),
+                              color: const Color.fromARGB(255, 0, 0, 0),
+                              fontWeight: FontWeight.w500),
                           decoration: InputDecoration.collapsed(
                             hintText: 'Document name',
                             border: InputBorder.none,
@@ -75,12 +76,22 @@ class SearchScreen extends StatelessWidget {
                       height: 50,
                       width: 100,
                       decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            colors: [
+                              Color.fromARGB(186, 24, 43, 212),
+                              Color.fromARGB(255, 13, 72, 121), // Black color
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
                           color: const Color.fromARGB(255, 165, 70, 243),
                           borderRadius: BorderRadius.circular(10)),
                       child: state.isSubmitting
-                          ?  Center(child: LoadingAnimationWidget.stretchedDots(
-                      size: 30,
-                      color: const Color.fromARGB(255, 181, 112, 238),))
+                          ? Center(
+                              child: LoadingAnimationWidget.stretchedDots(
+                              size: 30,
+                              color: const Color.fromARGB(255, 181, 112, 238),
+                            ))
                           : const Icon(
                               Icons.search_rounded,
                               color: Colors.white,
@@ -110,11 +121,12 @@ class SearchScreen extends StatelessWidget {
                 },
                 builder: (context, state) {
                   if (state.isSubmitting) {
-                    return  Container();
+                    return Container();
                   } else if (state.data.isEmpty) {
                     return const Text('',
                         style: TextStyle(color: Colors.white));
-                  } else {
+                  } 
+                  else {
                     final doc = state.data.first;
                     return ListTile(
                       onTap: () => Navigator.of(context).push(MaterialPageRoute(

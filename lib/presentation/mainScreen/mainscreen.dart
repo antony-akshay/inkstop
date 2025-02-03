@@ -20,7 +20,7 @@ class HomescreenState extends State<Homescreen> {
     const HistoryScreen(username: 'akshay'),
     Newdoc(),
     SearchScreen(),
-    const NotificationScreen(username: 'akshay',)
+    const NotificationScreen(username: 'amaldev',)
   ];
 
   @override
@@ -28,7 +28,7 @@ class HomescreenState extends State<Homescreen> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       bottomNavigationBar: CurvedNavigationBar(
-        color: const Color.fromARGB(255, 165, 70, 243),
+        color:const Color.fromARGB(186, 24, 43, 212),
         backgroundColor: Colors.transparent,
         animationDuration: const Duration(milliseconds: 300),
         onTap: (index) {

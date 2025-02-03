@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:inkstop/presentation/Auth/signup1.dart';
-
+import 'package:google_fonts/google_fonts.dart';
+import 'package:inkstop/presentation/Auth/authroute.dart';
 
 class Splashscreen extends StatefulWidget {
   const Splashscreen({super.key});
@@ -28,7 +28,7 @@ class _SplashscreenState extends State<Splashscreen> {
         //   ),
         // );
         Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => SignupPage1()));
+            MaterialPageRoute(builder: (context) => const Authroute()));
       });
     });
     // Start the timer for the splash screen
@@ -36,8 +36,47 @@ class _SplashscreenState extends State<Splashscreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Color.fromARGB(255, 165, 70, 243),
+    return Scaffold(
+      body: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromARGB(185, 0, 26, 255),
+                Color.fromARGB(255, 0, 0, 0)
+              ], // Gradient colors
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: 350,
+                  width: 350,
+                  decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(40),
+                          bottomRight: Radius.circular(40)),
+                      image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage('assets/images/octo.png'))),
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+                Text(
+                  'ink stop',
+                  style: GoogleFonts.permanentMarker(
+                      letterSpacing: 4,
+                      color: const Color.fromARGB(255, 233, 223, 223),
+                      fontSize: 40,
+                      fontWeight: FontWeight.w700),
+                ),
+              ],
+            ),
+          )),
     );
   }
 

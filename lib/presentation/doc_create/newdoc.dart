@@ -160,22 +160,32 @@ class Newdoc extends StatelessWidget {
                     },
                     builder: (context, state) {
                       return Container(
-                          height: 50,
-                          width: 100,
-                          decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 165, 70, 243),
-                              borderRadius: BorderRadius.circular(10)),
-                          child: state.isSubmitting
-                              ? const Center(
-                                  child: CircularProgressIndicator(
-                                  color: Colors.white,
-                                ))
-                              : Center(
-                                  child: Text(
-                                  'create',
-                                  style: GoogleFonts.permanentMarker(
-                                      color: Colors.white),
-                                )));
+  height: 50,
+  width: 100,
+  decoration: BoxDecoration(
+    gradient: LinearGradient(
+      colors: [
+        const Color.fromARGB(186, 24, 43, 212),// Light blue color
+        Colors.black, // Black color
+      ],
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+    ),
+    borderRadius: BorderRadius.circular(10),
+  ),
+  child: state.isSubmitting
+      ? const Center(
+          child: CircularProgressIndicator(
+          color: Colors.white,
+        ))
+      : Center(
+          child: Text(
+          'create',
+          style: GoogleFonts.permanentMarker(
+              color: Colors.white),
+        )),
+);
+
                     },
                   ),
                 )

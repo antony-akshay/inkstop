@@ -14,7 +14,7 @@ class HistoryApi implements IHistoryFacade {
       {required String username}) async {
     var headers = {'contents-Type': 'application/json'};
     var dio = Dio();
-    print(username);
+    // print(username);
     var data = json.encode({"username": username});
 
     try {

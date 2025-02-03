@@ -34,7 +34,7 @@ class HistoryScreen extends StatelessWidget {
                       orElse: () {},
                     );
                     ScaffoldMessenger.of(context)
-                        .showSnackBar(SnackBar(content: Text("$message")));
+                        .showSnackBar(SnackBar(content: Text("$message"),behavior: SnackBarBehavior.floating,backgroundColor: const Color.fromARGB(255, 47, 47, 47),));
                   }, (success) {});
                 });
               },
@@ -44,7 +44,8 @@ class HistoryScreen extends StatelessWidget {
                   return Center(
                     child: LoadingAnimationWidget.stretchedDots(
                       size: 60,
-                      color: const Color.fromARGB(255, 181, 112, 238),
+                      // color: const Color.fromARGB(255, 181, 112, 238),
+                      color: const Color.fromARGB(185, 255, 255, 255)
                     ),
                   );
                 }

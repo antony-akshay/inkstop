@@ -11,7 +11,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900],
+      backgroundColor: const Color.fromARGB(255, 0, 0, 0),
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.only(left: 3, right: 3),
@@ -26,7 +26,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 Container(
                   height: 45,
-                  width: 400,
+                  width: 360,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(6)),
@@ -62,7 +62,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 Container(
                   height: 45,
-                  width: 400,
+                  width: 360,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(6)),
@@ -104,9 +104,18 @@ class LoginScreen extends StatelessWidget {
                         builder: (context) => const Homescreen()));
                   },
                   child: Container(
+
                     height: 50,
                     width: 200,
                     decoration: BoxDecoration(
+                       gradient: const LinearGradient(
+                            colors: [
+                              Color.fromARGB(186, 24, 43, 212),
+                              Color.fromARGB(255, 13, 72, 121), // Black color
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
                       borderRadius: BorderRadius.circular(10),
                       color: const Color.fromARGB(255, 165, 70, 243),
                     ),
