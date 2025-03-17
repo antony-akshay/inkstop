@@ -1,24 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inkstop/application/signup/signup_bloc.dart';
 import 'package:inkstop/presentation/Auth/login_screen.dart';
+import 'package:inkstop/presentation/mainScreen/mainscreen.dart';
 
+class SignupPage2 extends StatefulWidget {
+  final String firstname;
+  final String lastname;
+  final String phone;
+  final String email;
+  final String aadharno;
 
-class SignupPage2 extends StatelessWidget {
-  String firstname;
-  String lastname;
-  String phone;
-  String email;
-  String aadharno;
+  const SignupPage2({
+    super.key,
+    required this.firstname,
+    required this.lastname,
+    required this.phone,
+    required this.email,
+    required this.aadharno,
+  });
 
-  SignupPage2(
-      {super.key,
-      required this.firstname,
-      required this.lastname,
-      required this.phone,
-      required this.email,
-      required this.aadharno
-      });
+  @override
+  _SignupPage2State createState() => _SignupPage2State();
+}
 
+class _SignupPage2State extends State<SignupPage2> {
   TextEditingController usernameStr = TextEditingController();
   TextEditingController passwordStr = TextEditingController();
 
@@ -27,129 +34,141 @@ class SignupPage2 extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 0, 0, 0),
       body: SafeArea(
-          child: Padding(
-        padding: const EdgeInsets.only(left: 3, right: 3),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                const SizedBox(
-                  width: 5,
-                ),
-                Container(
-                  height: 45,
-                  width: 360,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(6)),
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 5),
-                      child: TextFormField(
-                        controller: usernameStr,
-                        style: GoogleFonts.averiaSansLibre(
-                            color: const Color.fromARGB(255, 0, 0, 0)),
-                        decoration: InputDecoration.collapsed(
-                            hintText: 'username',
-                            border: InputBorder.none,
-                            hintStyle: GoogleFonts.averiaSansLibre(
-                                color: Colors.grey)),
-                      ),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 3, right: 3),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Username field
+              buildTextField(usernameStr, 'Username', false),
+              const SizedBox(height: 10),
+              // Password field
+              buildTextField(passwordStr, 'Password', true),
+              const SizedBox(height: 20),
+              // Sign up button
+              GestureDetector(
+                onTap: () {
+                  print('🔵 Signup Button Pressed');
+                  BlocProvider.of<SignupBloc>(context).add(
+                    SignupEvent.signupButtonPressed(
+                      firstname: widget.firstname,
+                      lastname: widget.lastname,
+                      phone: widget.phone,
+                      email: widget.email,
+                      username: usernameStr.text,
+                      password: passwordStr.text,
+                      aAdharno: widget.aadharno,
                     ),
-                  ),
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                const SizedBox(
-                  width: 5,
-                ),
-                Container(
-                  height: 45,
-                  width: 360,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(6)),
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 5),
-                      child: TextFormField(
-                        obscureText: true,
-                        controller: passwordStr,
-                        style: GoogleFonts.averiaSansLibre(
-                            color: const Color.fromARGB(255, 0, 0, 0)),
-                        decoration: InputDecoration.collapsed(
-                            hintText: 'password',
-                            border: InputBorder.none,
-                            hintStyle: GoogleFonts.averiaSansLibre(
-                                color: Colors.grey)),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                const SizedBox(
-                  width: 5,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => LoginScreen()));
+                  );
+                },
+                child: BlocConsumer<SignupBloc, SignupState>(
+                  listener: (context, state) {
+                    state.successOrFailure.fold(() {}, (val) {
+                      val.fold(
+                        (failure) {
+                          final message = failure.maybeWhen(
+                            orElse: () => "Some error occurred",
+                            UsernameAlreadyExists: () =>
+                                'Username already exists',
+                            EmailAlreadyExists: () => 'Email already exists',
+                            AadharAlreadyExists: () =>
+                                'Aadhar number already enrolled',
+                          );
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(SnackBar(content: Text(message)));
+                        },
+                        (success) {
+                          print(
+                              "✅ Signup Success! Navigating to LoginScreen...");
+                          nu(context);
+                        },
+                      );
+                    });
                   },
-                  child: Container(
-                    height: 50,
-                    width: 200,
-                    decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                        colors: [
-                          Color.fromARGB(186, 24, 43, 212),
-                          Color.fromARGB(255, 13, 72, 121), // Black color
-                        ],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                      ),
-                      borderRadius: BorderRadius.circular(10),
-                      color: const Color.fromARGB(255, 165, 70, 243),
-                    ),
-                    child: Center(
-                        child: Text(
-                      'Sign up',
-                      style: GoogleFonts.italiana(
-                          fontSize: 17,
-                          fontWeight: FontWeight.w900,
-                          letterSpacing: 3,
-                          color: Colors.white),
-                    )),
-                  ),
+                  builder: (context, state) {
+                    return Center(
+                      child: state.isSubmitting
+                          ? const CircularProgressIndicator()
+                          : buildSignupButton(),
+                    );
+                  },
                 ),
-                const SizedBox(
-                  width: 5,
-                )
-              ],
-            )
-          ],
+              ),
+            ],
+          ),
         ),
-      )),
+      ),
+    );
+  }
+
+  void nu(BuildContext context) {
+   void nu(BuildContext context) {
+  if (!mounted) return; // ✅ Prevents calling Navigator when the widget is unmounted
+
+  print("🟢 Navigating to LoginScreen...");
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    if (mounted) {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => LoginScreen()),
+      );
+    }
+  });
+}
+
+  }
+
+  // Helper method for TextField
+  Widget buildTextField(
+      TextEditingController controller, String hint, bool obscure) {
+    return Container(
+      height: 45,
+      width: 360,
+      decoration: BoxDecoration(
+          color: Colors.white, borderRadius: BorderRadius.circular(6)),
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 5),
+          child: TextFormField(
+            controller: controller,
+            obscureText: obscure,
+            style: GoogleFonts.averiaSansLibre(
+                color: const Color.fromARGB(255, 0, 0, 0)),
+            decoration: InputDecoration.collapsed(
+                hintText: hint,
+                border: InputBorder.none,
+                hintStyle: GoogleFonts.averiaSansLibre(color: Colors.grey)),
+          ),
+        ),
+      ),
+    );
+  }
+
+  // Helper method for Sign Up Button
+  Widget buildSignupButton() {
+    return Container(
+      height: 50,
+      width: 200,
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [
+            Color.fromARGB(186, 24, 43, 212),
+            Color.fromARGB(255, 13, 72, 121),
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Center(
+        child: Text(
+          'Sign up',
+          style: GoogleFonts.italiana(
+              fontSize: 17,
+              fontWeight: FontWeight.w900,
+              letterSpacing: 3,
+              color: Colors.white),
+        ),
+      ),
     );
   }
 }

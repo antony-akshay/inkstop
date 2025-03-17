@@ -6,6 +6,7 @@ import 'package:inkstop/application/login/login_bloc.dart';
 import 'package:inkstop/application/newbloc_bloc/newdoc_bloc.dart';
 import 'package:inkstop/application/notification_bloc/bloc/notification_bloc.dart';
 import 'package:inkstop/application/search_bloc/search_bloc.dart';
+import 'package:inkstop/application/signup/signup_bloc.dart';
 import 'package:inkstop/presentation/Auth/login_screen.dart';
 import 'package:inkstop/presentation/Auth/signup1.dart';
 import 'package:inkstop/presentation/history_screen/history_screen.dart';
@@ -35,6 +36,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<NewdocBloc>(
           create: (context) => NewdocBloc(),
+        ),
+        BlocProvider<SignupBloc>(
+          create: (context) => SignupBloc(),
         ),
       ],
       child: BlocBuilder<SearchBloc, SearchState>(

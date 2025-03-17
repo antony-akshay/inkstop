@@ -20,7 +20,7 @@ class HistoryApi implements IHistoryFacade {
     try {
       var response = await dio.request(
           "http://localhost:3000/api/history/$username",
-          options: Options(headers: headers, method: 'GET'));
+          options: Options(headers: headers, method: 'GET',),data: data);
 
       if (response.statusCode == 200) {
         final List<HistoryModel> history = List<HistoryModel>.from(
