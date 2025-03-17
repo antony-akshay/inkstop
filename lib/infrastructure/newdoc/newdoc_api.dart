@@ -39,6 +39,7 @@ class CreateNewDoc implements INewdocFacade {
           print('hi');
           return left(const DocFailures.userDoesNotExist());
         }
+        return right(unit);
       } else if (response.statusCode == 400) {
         return left(const DocFailures.userDoesNotExist());
       }

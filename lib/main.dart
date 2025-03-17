@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:inkstop/application/history_bloc/history_bloc.dart';
+import 'package:inkstop/application/login/login_bloc.dart';
 import 'package:inkstop/application/newbloc_bloc/newdoc_bloc.dart';
 import 'package:inkstop/application/notification_bloc/bloc/notification_bloc.dart';
 import 'package:inkstop/application/search_bloc/search_bloc.dart';
+import 'package:inkstop/presentation/Auth/login_screen.dart';
+import 'package:inkstop/presentation/Auth/signup1.dart';
+import 'package:inkstop/presentation/history_screen/history_screen.dart';
+import 'package:inkstop/presentation/search_screen/search_screen.dart';
 import 'package:inkstop/presentation/splashScreen/SplashScreen.dart';
 
 import 'injection.dart'; // Import the injection setup
@@ -22,6 +27,7 @@ class MyApp extends StatelessWidget {
     // final INewdocFacade newdoc = GetIt.instance<INewdocFacade>();
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (context) => LoginBloc()),
         BlocProvider(create: (context) => NotificationBloc()),
         BlocProvider<HistoryBloc>(create: (context) => HistoryBloc()),
         BlocProvider<SearchBloc>(
@@ -33,9 +39,9 @@ class MyApp extends StatelessWidget {
       ],
       child: BlocBuilder<SearchBloc, SearchState>(
         builder: (context, themeState) {
-          return const MaterialApp(
+          return  MaterialApp(
             debugShowCheckedModeBanner: false,
-            home: Splashscreen(),
+            home:SignupPage1()
           );
         },
       ),

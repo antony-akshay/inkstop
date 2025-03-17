@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inkstop/presentation/Auth/login_screen.dart';
-import 'package:inkstop/presentation/doc_details/doc_details.dart';
-import 'package:inkstop/presentation/mainScreen/mainscreen.dart';
+
 
 class SignupPage2 extends StatelessWidget {
   String firstname;
   String lastname;
   String phone;
   String email;
+  String aadharno;
 
   SignupPage2(
       {super.key,
       required this.firstname,
       required this.lastname,
       required this.phone,
-      required this.email});
+      required this.email,
+      required this.aadharno
+      });
 
   TextEditingController usernameStr = TextEditingController();
   TextEditingController passwordStr = TextEditingController();
@@ -76,7 +78,6 @@ class SignupPage2 extends StatelessWidget {
                   height: 45,
                   width: 360,
                   decoration: BoxDecoration(
-                    
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(6)),
                   child: Center(
@@ -102,10 +103,8 @@ class SignupPage2 extends StatelessWidget {
               ],
             ),
             const SizedBox(
-              height: 20
-              ,
+              height: 20,
             ),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -115,20 +114,20 @@ class SignupPage2 extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(builder: (context) => LoginScreen()));
+                        MaterialPageRoute(builder: (context) => LoginScreen()));
                   },
                   child: Container(
                     height: 50,
                     width: 200,
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(
-                            colors: [
-                              Color.fromARGB(186, 24, 43, 212),
-                              Color.fromARGB(255, 13, 72, 121), // Black color
-                            ],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                          ),
+                        colors: [
+                          Color.fromARGB(186, 24, 43, 212),
+                          Color.fromARGB(255, 13, 72, 121), // Black color
+                        ],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
                       borderRadius: BorderRadius.circular(10),
                       color: const Color.fromARGB(255, 165, 70, 243),
                     ),

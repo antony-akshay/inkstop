@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inkstop/application/login/login_bloc.dart';
 import 'package:inkstop/presentation/mainScreen/mainscreen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -100,15 +102,43 @@ class LoginScreen extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     print("${usernameStr.text},${passwordStr.text}");
+                    BlocProvider.of<LoginBloc>(context).add(
+                        LoginEvent.loginButtonPressed(
+                            identifier: usernameStr.text,
+                            password: passwordStr.text));
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
                         builder: (context) => const Homescreen()));
                   },
-                  child: Container(
-
-                    height: 50,
-                    width: 200,
-                    decoration: BoxDecoration(
-                       gradient: const LinearGradient(
+                  child: BlocConsumer<LoginBloc, LoginState>(
+                    listener: (context, state) {
+                      state.succesFailure.fold(() {}, (val) {
+                        val.fold((failure) {
+                          final message = failure.maybeWhen(
+                            InvalidPassword: () => 'invalid password',
+                            InvalidCredentials: () => 'invalid credentials',
+                            ServerError: () => 'server error',
+                            orElse: () {},
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text("$message"),
+                            behavior: SnackBarBehavior.floating,
+                            backgroundColor:
+                                const Color.fromARGB(255, 47, 47, 47),
+                          ));
+                        }, (success) {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Homescreen()));
+                        });
+                      });
+                    },
+                    builder: (context, state) {
+                      return Container(
+                        height: 50,
+                        width: 200,
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
                             colors: [
                               Color.fromARGB(186, 24, 43, 212),
                               Color.fromARGB(255, 13, 72, 121), // Black color
@@ -116,17 +146,21 @@ class LoginScreen extends StatelessWidget {
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                           ),
-                      borderRadius: BorderRadius.circular(10),
-                      color: const Color.fromARGB(255, 165, 70, 243),
-                    ),
-                    child: Center(
-                        child: Text(
-                      'Login',
-                      style: GoogleFonts.italiana(
-                          fontWeight: FontWeight.w900,
-                          letterSpacing: 3,
-                          color: Colors.white),
-                    )),
+                          borderRadius: BorderRadius.circular(10),
+                          color: const Color.fromARGB(255, 165, 70, 243),
+                        ),
+                        child: Center(
+                            child: state.isSubmitting
+                                ? Text(
+                                    'Login',
+                                    style: GoogleFonts.italiana(
+                                        fontWeight: FontWeight.w900,
+                                        letterSpacing: 3,
+                                        color: Colors.white),
+                                  )
+                                : const CircularProgressIndicator()),
+                      );
+                    },
                   ),
                 ),
                 const SizedBox(
