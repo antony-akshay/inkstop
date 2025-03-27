@@ -17,7 +17,7 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: Repeatingwidgets.appbar(context),
+      appBar: Repeatingwidgets.appbar(context,'search'),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

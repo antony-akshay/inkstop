@@ -8,10 +8,6 @@ import 'package:inkstop/application/notification_bloc/bloc/notification_bloc.dar
 import 'package:inkstop/application/search_bloc/search_bloc.dart';
 import 'package:inkstop/application/signup/signup_bloc.dart';
 import 'package:inkstop/presentation/Auth/login_screen.dart';
-import 'package:inkstop/presentation/Auth/signup1.dart';
-import 'package:inkstop/presentation/history_screen/history_screen.dart';
-import 'package:inkstop/presentation/search_screen/search_screen.dart';
-import 'package:inkstop/presentation/splashScreen/SplashScreen.dart';
 
 import 'injection.dart'; // Import the injection setup
 
@@ -43,10 +39,8 @@ class MyApp extends StatelessWidget {
       ],
       child: BlocBuilder<SearchBloc, SearchState>(
         builder: (context, themeState) {
-          return  MaterialApp(
-            debugShowCheckedModeBanner: false,
-            home:SignupPage1()
-          );
+          return MaterialApp(
+              debugShowCheckedModeBanner: false, home: LoginScreen());
         },
       ),
     );

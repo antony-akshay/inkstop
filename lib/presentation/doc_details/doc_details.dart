@@ -15,7 +15,7 @@ class DocDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: Repeatingwidgets.appbar(context),
+      appBar: Repeatingwidgets.appbar(context,'docdetails'),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Padding(

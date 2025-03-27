@@ -25,7 +25,7 @@ class Newdoc extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: Repeatingwidgets.appbar(context),
+      appBar: Repeatingwidgets.appbar(context,'new document'),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -163,9 +163,9 @@ class Newdoc extends StatelessWidget {
   height: 50,
   width: 100,
   decoration: BoxDecoration(
-    gradient: LinearGradient(
+    gradient: const LinearGradient(
       colors: [
-        const Color.fromARGB(186, 24, 43, 212),// Light blue color
+        Color.fromARGB(186, 24, 43, 212),// Light blue color
         Colors.black, // Black color
       ],
       begin: Alignment.topLeft,

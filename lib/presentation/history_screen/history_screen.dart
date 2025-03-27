@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class HistoryScreen extends StatelessWidget {
-  const HistoryScreen({super.key,required String username});
+  const HistoryScreen({super.key, required String username});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class HistoryScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: Repeatingwidgets.appbar(context),
+      appBar: Repeatingwidgets.appbar(context,'history'),
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -33,8 +33,11 @@ class HistoryScreen extends StatelessWidget {
                       error: () => 'some error occured!',
                       orElse: () {},
                     );
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(SnackBar(content: Text("$message"),behavior: SnackBarBehavior.floating,backgroundColor: const Color.fromARGB(255, 47, 47, 47),));
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text("$message"),
+                      behavior: SnackBarBehavior.floating,
+                      backgroundColor: const Color.fromARGB(255, 47, 47, 47),
+                    ));
                   }, (success) {});
                 });
               },
@@ -43,10 +46,9 @@ class HistoryScreen extends StatelessWidget {
                 if (state.Search) {
                   return Center(
                     child: LoadingAnimationWidget.stretchedDots(
-                      size: 60,
-                      // color: const Color.fromARGB(255, 181, 112, 238),
-                      color: const Color.fromARGB(185, 255, 255, 255)
-                    ),
+                        size: 60,
+                        // color: const Color.fromARGB(255, 181, 112, 238),
+                        color: const Color.fromARGB(185, 255, 255, 255)),
                   );
                 }
                 return Expanded(
@@ -69,7 +71,6 @@ class HistoryScreen extends StatelessWidget {
                             break;
 
                           case Status.PENDING:
-                          default:
                             containerColor =
                                 const Color.fromARGB(255, 255, 198, 9);
                             circleColor =

@@ -15,7 +15,7 @@ class NotificationScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: Repeatingwidgets.appbar(context),
+      appBar: Repeatingwidgets.appbar(context,'notification'),
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

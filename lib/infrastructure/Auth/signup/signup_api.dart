@@ -58,7 +58,7 @@ class SignupApi implements ISignupFacade {
       return left(const SignupFailure.ServerError());
     } catch (e) {
       print("🚨 Signup API Error: $e");
-      if (e is DioError) {
+      if (e is DioException) {
         print("❌ Dio Error Type: ${e.type}");
         print("❌ Dio Error Response: ${e.response}");
         print("❌ Dio Error Message: ${e.message}");

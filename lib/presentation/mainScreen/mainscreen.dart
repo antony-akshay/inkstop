@@ -29,7 +29,8 @@ class HomescreenState extends State<Homescreen> {
       backgroundColor: const Color.fromARGB(0, 0, 0, 0),
       bottomNavigationBar: CurvedNavigationBar(
         color:const Color.fromARGB(186, 24, 43, 212),
-        backgroundColor: const Color.fromARGB(0, 0, 0, 0),
+        backgroundColor: Colors.black, // or any color that matches your theme
+
         animationDuration: const Duration(milliseconds: 300),
         onTap: (index) {
           setState(() {

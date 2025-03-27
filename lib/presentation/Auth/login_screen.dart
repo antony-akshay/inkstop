@@ -150,7 +150,7 @@ class LoginScreen extends StatelessWidget {
                           color: const Color.fromARGB(255, 165, 70, 243),
                         ),
                         child: Center(
-                            child: state.isSubmitting
+                            child: !state.isSubmitting
                                 ? Text(
                                     'Login',
                                     style: GoogleFonts.italiana(

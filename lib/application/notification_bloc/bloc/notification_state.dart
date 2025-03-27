@@ -8,5 +8,5 @@ class NotificationState with _$NotificationState {
       required bool isFetching}) = _NotificationState;
 
   factory NotificationState.intial() =>
-      NotificationState(model: [], successorFailure: None(), isFetching: true);
+      const NotificationState(model: [], successorFailure: None(), isFetching: true);
 }

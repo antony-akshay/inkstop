@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Repeatingwidgets {
-  static AppBar appbar(BuildContext context) {
+  static AppBar appbar(BuildContext context,String texttitle) {
     return AppBar(
       leading: const Icon(
         Icons.menu_rounded,
@@ -26,7 +26,7 @@ class Repeatingwidgets {
       ),
       backgroundColor: Colors.black,
       title: Text(
-        'history',
+        texttitle,
         style: GoogleFonts.quicksand(color: Colors.white, fontSize: 22),
       ),
     );

@@ -5,7 +5,7 @@ import 'package:flutter/animation.dart';
 
 class SpinKitThreeBounce extends StatefulWidget {
   const SpinKitThreeBounce({
-    Key? key,
+    super.key,
     this.color,
     this.size = 50.0,
     this.itemBuilder,
@@ -14,8 +14,7 @@ class SpinKitThreeBounce extends StatefulWidget {
   })  : assert(
           !(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
           'You should specify either a itemBuilder or a color',
-        ),
-        super(key: key);
+        );
 
   final Color? color;
   final double size;

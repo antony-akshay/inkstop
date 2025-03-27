@@ -28,7 +28,7 @@ class HistoryApi implements IHistoryFacade {
         );
         return right(history);
       } else {
-        return left(HistoryFailures.serverFailure());
+        return left(const HistoryFailures.serverFailure());
       }
     } on DioException catch (e) {
       if (e.type == DioExceptionType.connectionError) {

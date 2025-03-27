@@ -27,7 +27,7 @@ class NewdocBloc extends Bloc<NewdocEvent, NewdocState> {
           docContent: e.docContent,
           recipients: e.recipients,
         );
-        await resp.fold(
+        resp.fold(
           (failure) {
             print(failure);
             // If failure, emit the state with the failure
