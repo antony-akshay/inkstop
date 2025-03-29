@@ -245,7 +245,7 @@ abstract class _searchButtonPressed implements SearchEvent {
 /// @nodoc
 mixin _$SearchState {
   bool get isSubmitting => throw _privateConstructorUsedError;
-  List<DocModel> get data => throw _privateConstructorUsedError;
+  DocModel get data => throw _privateConstructorUsedError;
   Option<Either<SearchFailures, Unit>> get succesFailure =>
       throw _privateConstructorUsedError;
 
@@ -264,7 +264,7 @@ abstract class $SearchStateCopyWith<$Res> {
   @useResult
   $Res call(
       {bool isSubmitting,
-      List<DocModel> data,
+      DocModel data,
       Option<Either<SearchFailures, Unit>> succesFailure});
 }
 
@@ -295,7 +295,7 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<DocModel>,
+              as DocModel,
       succesFailure: null == succesFailure
           ? _value.succesFailure
           : succesFailure // ignore: cast_nullable_to_non_nullable
@@ -314,7 +314,7 @@ abstract class _$$SearchStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {bool isSubmitting,
-      List<DocModel> data,
+      DocModel data,
       Option<Either<SearchFailures, Unit>> succesFailure});
 }
 
@@ -341,9 +341,9 @@ class __$$SearchStateImplCopyWithImpl<$Res>
           : isSubmitting // ignore: cast_nullable_to_non_nullable
               as bool,
       data: null == data
-          ? _value._data
+          ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<DocModel>,
+              as DocModel,
       succesFailure: null == succesFailure
           ? _value.succesFailure
           : succesFailure // ignore: cast_nullable_to_non_nullable
@@ -357,20 +357,13 @@ class __$$SearchStateImplCopyWithImpl<$Res>
 class _$SearchStateImpl with DiagnosticableTreeMixin implements _SearchState {
   const _$SearchStateImpl(
       {required this.isSubmitting,
-      required final List<DocModel> data,
-      required this.succesFailure})
-      : _data = data;
+      required this.data,
+      required this.succesFailure});
 
   @override
   final bool isSubmitting;
-  final List<DocModel> _data;
   @override
-  List<DocModel> get data {
-    if (_data is EqualUnmodifiableListView) return _data;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_data);
-  }
-
+  final DocModel data;
   @override
   final Option<Either<SearchFailures, Unit>> succesFailure;
 
@@ -396,14 +389,14 @@ class _$SearchStateImpl with DiagnosticableTreeMixin implements _SearchState {
             other is _$SearchStateImpl &&
             (identical(other.isSubmitting, isSubmitting) ||
                 other.isSubmitting == isSubmitting) &&
-            const DeepCollectionEquality().equals(other._data, _data) &&
+            (identical(other.data, data) || other.data == data) &&
             (identical(other.succesFailure, succesFailure) ||
                 other.succesFailure == succesFailure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isSubmitting,
-      const DeepCollectionEquality().hash(_data), succesFailure);
+  int get hashCode =>
+      Object.hash(runtimeType, isSubmitting, data, succesFailure);
 
   /// Create a copy of SearchState
   /// with the given fields replaced by the non-null parameter values.
@@ -417,14 +410,14 @@ class _$SearchStateImpl with DiagnosticableTreeMixin implements _SearchState {
 abstract class _SearchState implements SearchState {
   const factory _SearchState(
           {required final bool isSubmitting,
-          required final List<DocModel> data,
+          required final DocModel data,
           required final Option<Either<SearchFailures, Unit>> succesFailure}) =
       _$SearchStateImpl;
 
   @override
   bool get isSubmitting;
   @override
-  List<DocModel> get data;
+  DocModel get data;
   @override
   Option<Either<SearchFailures, Unit>> get succesFailure;
 

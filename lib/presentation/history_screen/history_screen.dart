@@ -13,7 +13,7 @@ class HistoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<HistoryBloc>(context)
-        .add(const HistoryEvent.fetchHistory(username: 'akshay'));
+        .add(const HistoryEvent.fetchHistory(username: 'asasasa'));
 
     return Scaffold(
       backgroundColor: Colors.black,

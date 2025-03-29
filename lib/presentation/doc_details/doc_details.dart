@@ -6,7 +6,7 @@ import 'package:inkstop/presentation/search_screen/search_screen.dart';
 import 'package:intl/intl.dart';
 
 class DocDetails extends StatelessWidget {
-  final List<DocModel> data;
+  final DocModel data;
 
   DocDetails({super.key, required this.data});
 
@@ -93,7 +93,7 @@ class DocDetails extends StatelessWidget {
                                 width: 10,
                               ),
                               Text(
-                                doc.first.docId,
+                                doc.id,
                                 style: GoogleFonts.averiaSansLibre(
                                     fontWeight: FontWeight.w700,
                                     color: const Color.fromARGB(
@@ -114,7 +114,7 @@ class DocDetails extends StatelessWidget {
                                 width: 10,
                               ),
                               Text(
-                                doc.first.documentName,
+                                doc.documentName,
                                 style: GoogleFonts.averiaSansLibre(
                                     fontWeight: FontWeight.w500,
                                     color: const Color.fromARGB(
@@ -174,7 +174,7 @@ class DocDetails extends StatelessWidget {
                             height: 4,
                           ),
                           Text(
-                            doc.first.subject,
+                            doc.subject,
                             style: GoogleFonts.averiaSansLibre(
                                 fontWeight: FontWeight.w500,
                                 color:
@@ -229,7 +229,7 @@ class DocDetails extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.all(10),
                         child: Text(
-                          doc.first.content,
+                          doc.content,
                           style: GoogleFonts.averiaSansLibre(
                               fontWeight: FontWeight.w500,
                               color: const Color.fromARGB(255, 206, 201, 201)),
@@ -297,7 +297,7 @@ class DocDetails extends StatelessWidget {
                                 width: 5,
                               ),
                               Text(
-                                doc.first.createdBy,
+                                doc.createdBy,
                                 style: GoogleFonts.averiaSansLibre(
                                     fontWeight: FontWeight.w700,
                                     color: const Color.fromARGB(
@@ -450,7 +450,7 @@ class DocDetails extends StatelessWidget {
                 height: 300,
                 child: ListView.builder(
                     itemBuilder: (context, index) {
-                      final docs = doc[index];
+                      final docs = doc.recipients[index];
                       final Color containerColor;
                       final Color circleColor;
                       if (docs.status == "rejected") {
@@ -491,20 +491,19 @@ class DocDetails extends StatelessWidget {
                                 color: const Color.fromARGB(255, 255, 255, 255),
                               ),
                             ),
-                            trailing: Text(
-                              docs.updatedAt != null
-                                  ? DateFormat('yyyy-MM-dd HH:mm:ss')
-                                      .format(docs.updatedAt!)
-                                  : "N/A",
-                              style: const TextStyle(
-                                color: Color.fromARGB(255, 255, 255, 255),
-                              ),
-                            ),
+                            trailing:  Text(
+  docs.updatedAt != null && docs.updatedAt.isNotEmpty
+      ? DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.parse(docs.updatedAt))
+      : "N/A",
+  style: const TextStyle(
+    color: Color.fromARGB(255, 255, 255, 255),
+  ),
+),
                           ),
                         ),
                       );
                     },
-                    itemCount: doc.length),
+                    itemCount: doc.recipients.length),
               )
             ],
           ),

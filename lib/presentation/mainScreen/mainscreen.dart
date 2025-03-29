@@ -17,7 +17,7 @@ class HomescreenState extends State<Homescreen> {
 
   // Define the pages for each navigation item
   final List<Widget> pages = [
-    const HistoryScreen(username: 'akshay'),
+    const HistoryScreen(username: 'asasasa'),
     Newdoc(),
     SearchScreen(),
     const NotificationScreen(username: 'amaldev',)

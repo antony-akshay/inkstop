@@ -1,53 +1,86 @@
-// To parse this JSON data, do
-//
-//     final docModel = docModelFromJson(jsonString);
-
 import 'dart:convert';
 
-List<DocModel> docModelFromJson(String str) => List<DocModel>.from(json.decode(str).map((x) => DocModel.fromJson(x)));
+DocModel docModelFromJson(String str) => DocModel.fromJson(json.decode(str));
 
-String docModelToJson(List<DocModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String docModelToJson(DocModel data) => json.encode(data.toJson());
 
 class DocModel {
-    String docId;
+    String id;
     String documentName;
     String subject;
     String content;
     String createdBy;
-    String recipient;
-    String status;
-    DateTime? updatedAt;
+    List<Recipient> recipients;
 
     DocModel({
-        required this.docId,
+        required this.id,
         required this.documentName,
         required this.subject,
         required this.content,
         required this.createdBy,
-        required this.recipient,
-        required this.status,
-        required this.updatedAt,
+        required this.recipients,
     });
 
     factory DocModel.fromJson(Map<String, dynamic> json) => DocModel(
-        docId: json["doc_id"],
+        id: json["_id"],
         documentName: json["document_name"],
         subject: json["subject"],
         content: json["content"],
         createdBy: json["created_by"],
-        recipient: json["recipient"],
-        status: json["status"],
-        updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
+        recipients: List<Recipient>.from(json["recipients"].map((x) => Recipient.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
-        "doc_id": docId,
+        "_id": id,
         "document_name": documentName,
         "subject": subject,
         "content": content,
         "created_by": createdBy,
+        "recipients": List<dynamic>.from(recipients.map((x) => x.toJson())),
+    };
+
+    factory DocModel.empty() => DocModel(
+        id: "",
+        documentName: "",
+        subject: "",
+        content: "",
+        createdBy: "",
+        recipients: [],
+    );
+}
+
+class Recipient {
+    String id;
+    String docId;
+    String recipient;
+    String status;
+    dynamic updatedAt;
+    int v;
+
+    Recipient({
+        required this.id,
+        required this.docId,
+        required this.recipient,
+        required this.status,
+        required this.updatedAt,
+        required this.v,
+    });
+
+    factory Recipient.fromJson(Map<String, dynamic> json) => Recipient(
+        id: json["_id"],
+        docId: json["doc_id"],
+        recipient: json["recipient"],
+        status: json["status"],
+        updatedAt: json["updated_at"],
+        v: json["__v"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "_id": id,
+        "doc_id": docId,
         "recipient": recipient,
         "status": status,
-        "updated_at": updatedAt?.toIso8601String(),
+        "updated_at": updatedAt,
+        "__v": v,
     };
 }
