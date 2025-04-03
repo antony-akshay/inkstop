@@ -14,18 +14,19 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
   HistoryBloc() : super(HistoryState.initial()) {
     on<HistoryEvent>((event, emit) async {
       await event.map(fetchHistory: (e) async {
-        emit(state.copyWith(
-          model: [],
-          successOrFailure: const None(),
-          Search: true
-        ));
+        emit(state
+            .copyWith(model: [], successOrFailure: const None(), Search: true));
+        print('inside history bloc $e.username');
         final response = await historyapi.fetchhistory(username: e.username);
 
         response.fold((failure) {
-          emit(
-              state.copyWith(Search: true,model: [], successOrFailure: some(left(failure))));
+          emit(state.copyWith(
+              Search: true, model: [], successOrFailure: some(left(failure))));
         }, (history) {
-          emit(state.copyWith(Search: false,model: history,successOrFailure: some(right(unit))));
+          emit(state.copyWith(
+              Search: false,
+              model: history,
+              successOrFailure: some(right(unit))));
         });
       });
     });

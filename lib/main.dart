@@ -7,6 +7,7 @@ import 'package:inkstop/application/newbloc_bloc/newdoc_bloc.dart';
 import 'package:inkstop/application/notification_bloc/bloc/notification_bloc.dart';
 import 'package:inkstop/application/search_bloc/search_bloc.dart';
 import 'package:inkstop/application/signup/signup_bloc.dart';
+import 'package:inkstop/presentation/Auth/authroute.dart';
 import 'package:inkstop/presentation/Auth/login_screen.dart';
 import 'package:inkstop/presentation/mainScreen/mainscreen.dart';
 
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
       child: BlocBuilder<SearchBloc, SearchState>(
         builder: (context, themeState) {
           return MaterialApp(
-              debugShowCheckedModeBanner: false, home: Homescreen());
+              debugShowCheckedModeBanner: false, home: Authroute());
         },
       ),
     );

@@ -9,65 +9,81 @@ List<NotificationModel> notificationModelFromJson(String str) => List<Notificati
 String notificationModelToJson(List<NotificationModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class NotificationModel {
+    String id;
+    DocId docId;
+    String recipient;
+    String status;
+    dynamic updatedAt;
+    int v;
+
+    NotificationModel({
+        required this.id,
+        required this.docId,
+        required this.recipient,
+        required this.status,
+        required this.updatedAt,
+        required this.v,
+    });
+
+    factory NotificationModel.fromJson(Map<String, dynamic> json) => NotificationModel(
+        id: json["_id"],
+        docId: DocId.fromJson(json["doc_id"]),
+        recipient: json["recipient"],
+        status: json["status"],
+        updatedAt: json["updated_at"],
+        v: json["__v"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "_id": id,
+        "doc_id": docId.toJson(),
+        "recipient": recipient,
+        "status": status,
+        "updated_at": updatedAt,
+        "__v": v,
+    };
+}
+
+class DocId {
+    String id;
     String docId;
     String documentName;
     String subject;
     String content;
-    CreatedBy createdBy;
-    Status status;
+    String createdBy;
+    DateTime createdAt;
+    int v;
 
-    NotificationModel({
+    DocId({
+        required this.id,
         required this.docId,
         required this.documentName,
         required this.subject,
         required this.content,
         required this.createdBy,
-        required this.status,
+        required this.createdAt,
+        required this.v,
     });
 
-    factory NotificationModel.fromJson(Map<String, dynamic> json) => NotificationModel(
+    factory DocId.fromJson(Map<String, dynamic> json) => DocId(
+        id: json["_id"],
         docId: json["doc_id"],
         documentName: json["document_name"],
         subject: json["subject"],
         content: json["content"],
-        createdBy: createdByValues.map[json["created_by"]]!,
-        status: statusValues.map[json["status"]]!,
+        createdBy: json["created_by"],
+        createdAt: DateTime.parse(json["created_at"]),
+        v: json["__v"],
     );
 
     Map<String, dynamic> toJson() => {
+        "_id": id,
         "doc_id": docId,
         "document_name": documentName,
         "subject": subject,
         "content": content,
-        "created_by": createdByValues.reverse[createdBy],
-        "status": statusValues.reverse[status],
+        "created_by": createdBy,
+        "created_at": createdAt.toIso8601String(),
+        "__v": v,
     };
-}
-
-enum CreatedBy {
-    AKSHAY
-}
-
-final createdByValues = EnumValues({
-    "akshay": CreatedBy.AKSHAY
-});
-
-enum Status {
-    PENDING
-}
-
-final statusValues = EnumValues({
-    "pending": Status.PENDING
-});
-
-class EnumValues<T> {
-    Map<String, T> map;
-    late Map<T, String> reverseMap;
-
-    EnumValues(this.map);
-
-    Map<T, String> get reverse {
-            reverseMap = map.map((k, v) => MapEntry(v, k));
-            return reverseMap;
-    }
 }

@@ -22,6 +22,7 @@ class NewdocBloc extends Bloc<NewdocEvent, NewdocState> {
           successFailure: none(),
         ));
         final resp = await newdoc.createdoc(
+          username: e.username,
           docname: e.docname,
           docSubject: e.docSubject,
           docContent: e.docContent,

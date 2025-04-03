@@ -8,7 +8,8 @@ import 'package:inkstop/presentation/components/widgets.dart';
 @immutable
 // ignore: must_be_immutable
 class Newdoc extends StatelessWidget {
-  Newdoc({super.key});
+  final String username;
+  Newdoc({super.key, required this.username});
 
   TextEditingController docname = TextEditingController();
   TextEditingController docSubject = TextEditingController();
@@ -25,7 +26,7 @@ class Newdoc extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: Repeatingwidgets.appbar(context,'new document'),
+      appBar: Repeatingwidgets.appbar(context, 'new document'),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -103,7 +104,8 @@ class Newdoc extends StatelessWidget {
                         borderRadius: BorderRadius.circular(6),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 5, top: 10,bottom: 12),
+                        padding:
+                            const EdgeInsets.only(left: 5, top: 10, bottom: 12),
                         child: TextFormField(
                           controller: docContent,
                           style: GoogleFonts.averiaSansLibre(
@@ -138,6 +140,7 @@ class Newdoc extends StatelessWidget {
                     print(_chipsList);
                     BlocProvider.of<NewdocBloc>(context).add(
                         NewdocEvent.createButtonPressed(
+                            username: username,
                             docname: docname.text,
                             docSubject: docSubject.text,
                             docContent: docContent.text,
@@ -160,32 +163,32 @@ class Newdoc extends StatelessWidget {
                     },
                     builder: (context, state) {
                       return Container(
-  height: 50,
-  width: 100,
-  decoration: BoxDecoration(
-    gradient: const LinearGradient(
-      colors: [
-        Color.fromARGB(186, 24, 43, 212),// Light blue color
-        Colors.black, // Black color
-      ],
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-    ),
-    borderRadius: BorderRadius.circular(10),
-  ),
-  child: state.isSubmitting
-      ? const Center(
-          child: CircularProgressIndicator(
-          color: Colors.white,
-        ))
-      : Center(
-          child: Text(
-          'create',
-          style: GoogleFonts.permanentMarker(
-              color: Colors.white),
-        )),
-);
-
+                        height: 50,
+                        width: 100,
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            colors: [
+                              Color.fromARGB(
+                                  186, 24, 43, 212), // Light blue color
+                              Colors.black, // Black color
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: state.isSubmitting
+                            ? const Center(
+                                child: CircularProgressIndicator(
+                                color: Colors.white,
+                              ))
+                            : Center(
+                                child: Text(
+                                'create',
+                                style: GoogleFonts.permanentMarker(
+                                    color: Colors.white),
+                              )),
+                      );
                     },
                   ),
                 )

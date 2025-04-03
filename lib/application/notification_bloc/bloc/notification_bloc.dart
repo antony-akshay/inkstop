@@ -15,27 +15,34 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
 
   NotificationBloc() : super(NotificationState.intial()) {
     on<NotificationEvent>((event, emit) async {
-      await event.map(
-          updateStatus: (e) async {},
-          fetchNotification: (e) async {
-            emit(
-              state.copyWith(
-                  isFetching: true, successorFailure: const None(), model: []),
-            );
-            final response = await notificationapi.fetchnotification(
-                username: event.username);
-            response.fold((failure) {
-              emit(state.copyWith(
-                  isFetching: false,
-                  model: [],
-                  successorFailure: some(left(failure))));
-            }, (notifications) {
-              emit(state.copyWith(
-                  isFetching: false,
-                  model: notifications,
-                  successorFailure: some(right(unit))));
-            });
-          });
+      await event.map(updateStatus: (e) async {
+        print("update");
+        final response = await notificationapi.updateStatus(
+            username: e.username, status: e.status, docId: e.docId);
+        response.fold((l) {
+        }, (r) {
+          
+        });
+      }, fetchNotification: (e) async {
+        print('fetch');
+        emit(
+          state.copyWith(
+              isFetching: true, successorFailure: const None(), model: []),
+        );
+        final response =
+            await notificationapi.fetchnotification(username: event.username);
+        response.fold((failure) {
+          emit(state.copyWith(
+              isFetching: false,
+              model: [],
+              successorFailure: some(left(failure))));
+        }, (notifications) {
+          emit(state.copyWith(
+              isFetching: false,
+              model: notifications,
+              successorFailure: some(right(unit))));
+        });
+      });
     });
   }
 }

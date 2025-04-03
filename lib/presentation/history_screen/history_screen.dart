@@ -8,12 +8,14 @@ import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class HistoryScreen extends StatelessWidget {
-  const HistoryScreen({super.key, required String username});
+   final String username;
+  const HistoryScreen({super.key, required  this.username});
 
   @override
   Widget build(BuildContext context) {
+
     BlocProvider.of<HistoryBloc>(context)
-        .add(const HistoryEvent.fetchHistory(username: 'asasasa'));
+        .add(HistoryEvent.fetchHistory(username: username));
 
     return Scaffold(
       backgroundColor: Colors.black,

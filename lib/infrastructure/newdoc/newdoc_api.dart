@@ -5,11 +5,13 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:inkstop/domain/newdoc/I_newdoc_facade.dart';
 import 'package:inkstop/domain/newdoc/newdoc_failures.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 @LazySingleton(as: INewdocFacade)
 class CreateNewDoc implements INewdocFacade {
   @override
   Future<Either<DocFailures, Unit>> createdoc({
+    required String username,
     required String docname,
     required String docSubject,
     required String docContent,
@@ -17,10 +19,11 @@ class CreateNewDoc implements INewdocFacade {
   }) async {
     var headers = {'Content-Type': 'application/json'};
     var dio = Dio();
+     print("");
     var data = json.encode({
       "document_name": docname,
       "subject": docSubject,
-      "created_by": "akshay", // Username of the creator
+      "created_by": getUsername(), // Username of the creator
       "content": docContent,
       "recipients": recipients
     });
@@ -58,4 +61,10 @@ class CreateNewDoc implements INewdocFacade {
       // }
     }
   }
+
+  Future<String?> getUsername() async {
+  final prefs = await SharedPreferences.getInstance();
+  return prefs.getString("username");
+}
+
 }

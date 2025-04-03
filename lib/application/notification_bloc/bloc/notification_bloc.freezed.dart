@@ -19,19 +19,22 @@ mixin _$NotificationEvent {
   String get username => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String username, String status) updateStatus,
+    required TResult Function(String username, String status, String docId)
+        updateStatus,
     required TResult Function(String username) fetchNotification,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String username, String status)? updateStatus,
+    TResult? Function(String username, String status, String docId)?
+        updateStatus,
     TResult? Function(String username)? fetchNotification,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String username, String status)? updateStatus,
+    TResult Function(String username, String status, String docId)?
+        updateStatus,
     TResult Function(String username)? fetchNotification,
     required TResult orElse(),
   }) =>
@@ -106,7 +109,7 @@ abstract class _$$updateStatusImplCopyWith<$Res>
       __$$updateStatusImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String username, String status});
+  $Res call({String username, String status, String docId});
 }
 
 /// @nodoc
@@ -124,6 +127,7 @@ class __$$updateStatusImplCopyWithImpl<$Res>
   $Res call({
     Object? username = null,
     Object? status = null,
+    Object? docId = null,
   }) {
     return _then(_$updateStatusImpl(
       username: null == username
@@ -134,6 +138,10 @@ class __$$updateStatusImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      docId: null == docId
+          ? _value.docId
+          : docId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -141,16 +149,19 @@ class __$$updateStatusImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$updateStatusImpl with DiagnosticableTreeMixin implements _updateStatus {
-  const _$updateStatusImpl({required this.username, required this.status});
+  const _$updateStatusImpl(
+      {required this.username, required this.status, required this.docId});
 
   @override
   final String username;
   @override
   final String status;
+  @override
+  final String docId;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'NotificationEvent.updateStatus(username: $username, status: $status)';
+    return 'NotificationEvent.updateStatus(username: $username, status: $status, docId: $docId)';
   }
 
   @override
@@ -159,7 +170,8 @@ class _$updateStatusImpl with DiagnosticableTreeMixin implements _updateStatus {
     properties
       ..add(DiagnosticsProperty('type', 'NotificationEvent.updateStatus'))
       ..add(DiagnosticsProperty('username', username))
-      ..add(DiagnosticsProperty('status', status));
+      ..add(DiagnosticsProperty('status', status))
+      ..add(DiagnosticsProperty('docId', docId));
   }
 
   @override
@@ -169,11 +181,12 @@ class _$updateStatusImpl with DiagnosticableTreeMixin implements _updateStatus {
             other is _$updateStatusImpl &&
             (identical(other.username, username) ||
                 other.username == username) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.docId, docId) || other.docId == docId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, username, status);
+  int get hashCode => Object.hash(runtimeType, username, status, docId);
 
   /// Create a copy of NotificationEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -186,30 +199,33 @@ class _$updateStatusImpl with DiagnosticableTreeMixin implements _updateStatus {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String username, String status) updateStatus,
+    required TResult Function(String username, String status, String docId)
+        updateStatus,
     required TResult Function(String username) fetchNotification,
   }) {
-    return updateStatus(username, status);
+    return updateStatus(username, status, docId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String username, String status)? updateStatus,
+    TResult? Function(String username, String status, String docId)?
+        updateStatus,
     TResult? Function(String username)? fetchNotification,
   }) {
-    return updateStatus?.call(username, status);
+    return updateStatus?.call(username, status, docId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String username, String status)? updateStatus,
+    TResult Function(String username, String status, String docId)?
+        updateStatus,
     TResult Function(String username)? fetchNotification,
     required TResult orElse(),
   }) {
     if (updateStatus != null) {
-      return updateStatus(username, status);
+      return updateStatus(username, status, docId);
     }
     return orElse();
   }
@@ -249,11 +265,13 @@ class _$updateStatusImpl with DiagnosticableTreeMixin implements _updateStatus {
 abstract class _updateStatus implements NotificationEvent {
   const factory _updateStatus(
       {required final String username,
-      required final String status}) = _$updateStatusImpl;
+      required final String status,
+      required final String docId}) = _$updateStatusImpl;
 
   @override
   String get username;
   String get status;
+  String get docId;
 
   /// Create a copy of NotificationEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -345,7 +363,8 @@ class _$fetchNotificationImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String username, String status) updateStatus,
+    required TResult Function(String username, String status, String docId)
+        updateStatus,
     required TResult Function(String username) fetchNotification,
   }) {
     return fetchNotification(username);
@@ -354,7 +373,8 @@ class _$fetchNotificationImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String username, String status)? updateStatus,
+    TResult? Function(String username, String status, String docId)?
+        updateStatus,
     TResult? Function(String username)? fetchNotification,
   }) {
     return fetchNotification?.call(username);
@@ -363,7 +383,8 @@ class _$fetchNotificationImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String username, String status)? updateStatus,
+    TResult Function(String username, String status, String docId)?
+        updateStatus,
     TResult Function(String username)? fetchNotification,
     required TResult orElse(),
   }) {

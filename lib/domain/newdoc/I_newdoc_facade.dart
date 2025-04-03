@@ -6,7 +6,9 @@ import 'package:inkstop/domain/newdoc/newdoc_failures.dart';
 
 abstract class INewdocFacade {
   Future<Either<DocFailures,Unit>> createdoc(
-      { required String docname,
+      { 
+        required String username,
+        required String docname,
       required String docSubject,
       required String docContent,
       required List<String> recipients});

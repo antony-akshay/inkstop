@@ -6,6 +6,7 @@ import 'package:injectable/injectable.dart';
 import 'package:inkstop/domain/core/history_model.dart';
 import 'package:inkstop/domain/history/I_history_facade.dart';
 import 'package:inkstop/domain/history/history_failures.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 @LazySingleton(as: IHistoryFacade)
 class HistoryApi implements IHistoryFacade {
@@ -16,11 +17,15 @@ class HistoryApi implements IHistoryFacade {
     var dio = Dio();
     // print(username);
     var data = json.encode({"username": username});
-
+    print("user name is $getUsername()");
     try {
-      var response = await dio.request(
-          "http://localhost:3000/api/history/$username",
-          options: Options(headers: headers, method: 'GET',),data: data);
+      var response =
+          await dio.request("http://localhost:3000/api/history/$username",
+              options: Options(
+                headers: headers,
+                method: 'GET',
+              ),
+              data: data);
 
       if (response.statusCode == 200) {
         final List<HistoryModel> history = List<HistoryModel>.from(
@@ -37,5 +42,10 @@ class HistoryApi implements IHistoryFacade {
         return left(const HistoryFailures.serverFailure());
       }
     }
+  }
+
+  Future<String?> getUsername() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString("username");
   }
 }

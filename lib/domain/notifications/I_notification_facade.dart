@@ -6,5 +6,5 @@ abstract class INotificationFacade {
   Future<Either<NotificationFailures, List<NotificationModel>>>
       fetchnotification({required String username});
   Future<Either<NotificationFailures, Unit>> updateStatus(
-      {required String username, required String status});
+      {required String username, required String status,required String docId});
 }
