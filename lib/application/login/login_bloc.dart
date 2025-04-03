@@ -13,7 +13,7 @@ final authFacade = AuthApi();
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc() : super(LoginState.initial()) {
     on<LoginEvent>((event, emit) async {
-      event.map(loginButtonPressed: (e) async {
+      await event.map(loginButtonPressed: (e) async { // ✅ Added `await` here
         final response = await authFacade.login(
             identifier: e.identifier, password: e.password);
 
@@ -23,9 +23,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             succesFailure: some(left(failure)),
           ));
         }, (success) {
-          emit((state.copyWith(
-            succesFailure: some(right(unit))
-          )));
+          emit(state.copyWith(
+            succesFailure: some(right(unit)),
+          ));
         });
       });
     });

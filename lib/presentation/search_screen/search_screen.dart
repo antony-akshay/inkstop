@@ -8,7 +8,8 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 @immutable
 class SearchScreen extends StatelessWidget {
-  SearchScreen({super.key});
+    final String username;
+  SearchScreen({super.key,required this.username});
 
   final TextEditingController docid = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -17,7 +18,7 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: Repeatingwidgets.appbar(context, 'Search'),
+      appBar: Repeatingwidgets.appbar(context, 'Search',username),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

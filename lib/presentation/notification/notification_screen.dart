@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inkstop/application/notification_bloc/bloc/notification_bloc.dart';
+import 'package:inkstop/infrastructure/search/search_api.dart';
 import 'package:inkstop/presentation/components/widgets.dart';
+import 'package:inkstop/presentation/doc_details/doc_details.dart';
 
 class NotificationScreen extends StatefulWidget {
   final String username;
@@ -26,7 +28,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: Repeatingwidgets.appbar(context, 'notification'),
+      appBar: Repeatingwidgets.appbar(context, 'notification', widget.username),
       body: SafeArea(
         child: BlocConsumer<NotificationBloc, NotificationState>(
           listener: (context, state) {
@@ -63,6 +65,17 @@ class _NotificationScreenState extends State<NotificationScreen> {
                       .toString()), // Unique key for animation
                   direction: DismissDirection.none, // Prevent swipe deletion
                   child: ListTile(
+                    onTap: () async {
+                      final res = await DocSearchApi.fetchDoc(
+                          docid: notification.docId.id);
+                      res.fold((l) {}, (r) {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => DocDetails(data: r),
+                          ),
+                        );
+                      });
+                    },
                     leading: const CircleAvatar(
                       backgroundColor: Color.fromARGB(255, 165, 70, 243),
                     ),
@@ -112,7 +125,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                             ),
                             onTap: () {
                               removeNotification(index);
-                               BlocProvider.of<NotificationBloc>(context).add(
+                              BlocProvider.of<NotificationBloc>(context).add(
                                   NotificationEvent.updateStatus(
                                       username: widget.username,
                                       status: "approved",

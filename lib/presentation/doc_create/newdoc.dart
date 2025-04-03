@@ -26,7 +26,7 @@ class Newdoc extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: Repeatingwidgets.appbar(context, 'new document'),
+      appBar: Repeatingwidgets.appbar(context, 'new document',username),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(

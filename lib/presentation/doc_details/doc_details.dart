@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inkstop/domain/core/docmodel.dart';
 import 'package:inkstop/presentation/components/widgets.dart';
@@ -13,9 +14,16 @@ class DocDetails extends StatelessWidget {
   late final doc = data;
   @override
   Widget build(BuildContext context) {
+    void copyToClipboard(String docId) {
+      Clipboard.setData(ClipboardData(text: docId));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Copied Doc ID: $docId")),
+      );
+    }
+
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: Repeatingwidgets.appbar(context,'docdetails'),
+      appBar: Repeatingwidgets.appbar(context, 'docdetails', ''),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Padding(
@@ -32,8 +40,7 @@ class DocDetails extends StatelessWidget {
                     height: 40,
                     child: IconButton(
                         onPressed: () {
-                          Navigator.of(context).pop(MaterialPageRoute(
-                              builder: (context) => SearchScreen()));
+                          Navigator.of(context).pop();
                         },
                         icon: const Icon(Icons.arrow_back_ios_rounded)),
                   ),
@@ -82,22 +89,30 @@ class DocDetails extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              Text(
-                                'Doc_id:',
-                                style: GoogleFonts.averiaSansLibre(
-                                    fontWeight: FontWeight.w700,
-                                    color: const Color.fromARGB(
-                                        255, 156, 153, 153)),
+                              GestureDetector(
+                                onTap: () {
+                                  copyToClipboard(doc.id);
+                                },
+                                child: Text(
+                                  'Doc_id:',
+                                  style: GoogleFonts.averiaSansLibre(
+                                      fontWeight: FontWeight.w700,
+                                      color: const Color.fromARGB(
+                                          255, 156, 153, 153)),
+                                ),
                               ),
                               const SizedBox(
                                 width: 10,
                               ),
-                              Text(
-                                doc.id,
-                                style: GoogleFonts.averiaSansLibre(
-                                    fontWeight: FontWeight.w700,
-                                    color: const Color.fromARGB(
-                                        255, 206, 201, 201)),
+                              GestureDetector(
+                                onTap: ()=>copyToClipboard(doc.id),
+                                child: Text(
+                                  doc.id,
+                                  style: GoogleFonts.averiaSansLibre(
+                                      fontWeight: FontWeight.w700,
+                                      color: const Color.fromARGB(
+                                          255, 206, 201, 201)),
+                                ),
                               ),
                             ],
                           ),
@@ -491,14 +506,16 @@ class DocDetails extends StatelessWidget {
                                 color: const Color.fromARGB(255, 255, 255, 255),
                               ),
                             ),
-                            trailing:  Text(
-  docs.updatedAt != null && docs.updatedAt.isNotEmpty
-      ? DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.parse(docs.updatedAt))
-      : "N/A",
-  style: const TextStyle(
-    color: Color.fromARGB(255, 255, 255, 255),
-  ),
-),
+                            trailing: Text(
+                              docs.updatedAt != null &&
+                                      docs.updatedAt.isNotEmpty
+                                  ? DateFormat('yyyy-MM-dd HH:mm:ss')
+                                      .format(DateTime.parse(docs.updatedAt))
+                                  : "N/A",
+                              style: const TextStyle(
+                                color: Color.fromARGB(255, 255, 255, 255),
+                              ),
+                            ),
                           ),
                         ),
                       );

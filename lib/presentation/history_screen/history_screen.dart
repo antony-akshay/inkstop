@@ -19,7 +19,7 @@ class HistoryScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: Repeatingwidgets.appbar(context,'history'),
+      appBar: Repeatingwidgets.appbar(context,'history',username),
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.all(15.0),

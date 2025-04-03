@@ -19,16 +19,14 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
         print("update");
         final response = await notificationapi.updateStatus(
             username: e.username, status: e.status, docId: e.docId);
-        response.fold((l) {
-        }, (r) {
-          
-        });
+        response.fold((l) {}, (r) {});
       }, fetchNotification: (e) async {
         print('fetch');
         emit(
           state.copyWith(
               isFetching: true, successorFailure: const None(), model: []),
         );
+        print("username inside notification bloc ${event.username}");
         final response =
             await notificationapi.fetchnotification(username: event.username);
         response.fold((failure) {

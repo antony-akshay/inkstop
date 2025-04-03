@@ -16,28 +16,29 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$NewdocEvent {
+  String get username => throw _privateConstructorUsedError;
   String get docname => throw _privateConstructorUsedError;
   String get docSubject => throw _privateConstructorUsedError;
   String get docContent => throw _privateConstructorUsedError;
   List<String> get recipients => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String docname, String docSubject,
-            String docContent, List<String> recipients)
+    required TResult Function(String username, String docname,
+            String docSubject, String docContent, List<String> recipients)
         createButtonPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String docname, String docSubject, String docContent,
-            List<String> recipients)?
+    TResult? Function(String username, String docname, String docSubject,
+            String docContent, List<String> recipients)?
         createButtonPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String docname, String docSubject, String docContent,
-            List<String> recipients)?
+    TResult Function(String username, String docname, String docSubject,
+            String docContent, List<String> recipients)?
         createButtonPressed,
     required TResult orElse(),
   }) =>
@@ -73,7 +74,8 @@ abstract class $NewdocEventCopyWith<$Res> {
       _$NewdocEventCopyWithImpl<$Res, NewdocEvent>;
   @useResult
   $Res call(
-      {String docname,
+      {String username,
+      String docname,
       String docSubject,
       String docContent,
       List<String> recipients});
@@ -94,12 +96,17 @@ class _$NewdocEventCopyWithImpl<$Res, $Val extends NewdocEvent>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? username = null,
     Object? docname = null,
     Object? docSubject = null,
     Object? docContent = null,
     Object? recipients = null,
   }) {
     return _then(_value.copyWith(
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
       docname: null == docname
           ? _value.docname
           : docname // ignore: cast_nullable_to_non_nullable
@@ -129,7 +136,8 @@ abstract class _$$createButtonPressedImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String docname,
+      {String username,
+      String docname,
       String docSubject,
       String docContent,
       List<String> recipients});
@@ -148,12 +156,17 @@ class __$$createButtonPressedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? username = null,
     Object? docname = null,
     Object? docSubject = null,
     Object? docContent = null,
     Object? recipients = null,
   }) {
     return _then(_$createButtonPressedImpl(
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
       docname: null == docname
           ? _value.docname
           : docname // ignore: cast_nullable_to_non_nullable
@@ -178,12 +191,15 @@ class __$$createButtonPressedImplCopyWithImpl<$Res>
 
 class _$createButtonPressedImpl implements _createButtonPressed {
   const _$createButtonPressedImpl(
-      {required this.docname,
+      {required this.username,
+      required this.docname,
       required this.docSubject,
       required this.docContent,
       required final List<String> recipients})
       : _recipients = recipients;
 
+  @override
+  final String username;
   @override
   final String docname;
   @override
@@ -200,7 +216,7 @@ class _$createButtonPressedImpl implements _createButtonPressed {
 
   @override
   String toString() {
-    return 'NewdocEvent.createButtonPressed(docname: $docname, docSubject: $docSubject, docContent: $docContent, recipients: $recipients)';
+    return 'NewdocEvent.createButtonPressed(username: $username, docname: $docname, docSubject: $docSubject, docContent: $docContent, recipients: $recipients)';
   }
 
   @override
@@ -208,6 +224,8 @@ class _$createButtonPressedImpl implements _createButtonPressed {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$createButtonPressedImpl &&
+            (identical(other.username, username) ||
+                other.username == username) &&
             (identical(other.docname, docname) || other.docname == docname) &&
             (identical(other.docSubject, docSubject) ||
                 other.docSubject == docSubject) &&
@@ -218,8 +236,8 @@ class _$createButtonPressedImpl implements _createButtonPressed {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, docname, docSubject, docContent,
-      const DeepCollectionEquality().hash(_recipients));
+  int get hashCode => Object.hash(runtimeType, username, docname, docSubject,
+      docContent, const DeepCollectionEquality().hash(_recipients));
 
   /// Create a copy of NewdocEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -233,34 +251,36 @@ class _$createButtonPressedImpl implements _createButtonPressed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String docname, String docSubject,
-            String docContent, List<String> recipients)
+    required TResult Function(String username, String docname,
+            String docSubject, String docContent, List<String> recipients)
         createButtonPressed,
   }) {
-    return createButtonPressed(docname, docSubject, docContent, recipients);
+    return createButtonPressed(
+        username, docname, docSubject, docContent, recipients);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String docname, String docSubject, String docContent,
-            List<String> recipients)?
+    TResult? Function(String username, String docname, String docSubject,
+            String docContent, List<String> recipients)?
         createButtonPressed,
   }) {
     return createButtonPressed?.call(
-        docname, docSubject, docContent, recipients);
+        username, docname, docSubject, docContent, recipients);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String docname, String docSubject, String docContent,
-            List<String> recipients)?
+    TResult Function(String username, String docname, String docSubject,
+            String docContent, List<String> recipients)?
         createButtonPressed,
     required TResult orElse(),
   }) {
     if (createButtonPressed != null) {
-      return createButtonPressed(docname, docSubject, docContent, recipients);
+      return createButtonPressed(
+          username, docname, docSubject, docContent, recipients);
     }
     return orElse();
   }
@@ -296,11 +316,14 @@ class _$createButtonPressedImpl implements _createButtonPressed {
 
 abstract class _createButtonPressed implements NewdocEvent {
   const factory _createButtonPressed(
-      {required final String docname,
+      {required final String username,
+      required final String docname,
       required final String docSubject,
       required final String docContent,
       required final List<String> recipients}) = _$createButtonPressedImpl;
 
+  @override
+  String get username;
   @override
   String get docname;
   @override

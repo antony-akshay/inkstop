@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inkstop/presentation/test/createdby.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Repeatingwidgets {
-  static AppBar appbar(BuildContext context,String texttitle) {
+  static AppBar appbar(
+      BuildContext context, String texttitle, String username) {
     return AppBar(
-      leading: const Icon(
-        Icons.menu_rounded,
-        color: Colors.white,
-        size: 35,
+      leading: GestureDetector(
+        onTap: () async {
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          await prefs.remove('username');
+          var a=await prefs.getString("username");
+          print(a);
+        },
+        child: const Icon(
+          Icons.menu_rounded,
+          color: Colors.white,
+          size: 35,
+        ),
       ),
       flexibleSpace: Container(
         decoration: const BoxDecoration(
@@ -29,6 +40,22 @@ class Repeatingwidgets {
         texttitle,
         style: GoogleFonts.quicksand(color: Colors.white, fontSize: 22),
       ),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.only(right: 30),
+          child: GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) =>
+                      CreatedDocumentsPage(username: username)));
+            },
+            child: Icon(
+              Icons.history_edu_outlined,
+              color: Colors.white,
+            ),
+          ),
+        )
+      ],
     );
     // AppBar(
     //   flexibleSpace: Container(

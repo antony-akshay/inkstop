@@ -23,7 +23,7 @@ class CreateNewDoc implements INewdocFacade {
     var data = json.encode({
       "document_name": docname,
       "subject": docSubject,
-      "created_by": getUsername(), // Username of the creator
+      "created_by": username, // Username of the creator
       "content": docContent,
       "recipients": recipients
     });

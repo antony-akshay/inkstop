@@ -13,11 +13,12 @@ class NotificationApi implements INotificationFacade {
       fetchnotification({required String username}) async {
     var headers = {'contents-TYpe': 'application/json'};
     var dio = Dio();
-    var data = jsonEncode({"username": getUsername()});
+    print("notifications api:$username");
+    var data = jsonEncode({"username": username});
 
     print('inside api');
     try {
-      var response = await dio.request('http://localhost:3000/notifications/cd',
+      var response = await dio.request('http://localhost:3000/notifications/$username',
           options: Options(method: 'GET', headers: headers), data: data);
       print(response.statusCode);
       print(response.data);
@@ -78,8 +79,7 @@ class NotificationApi implements INotificationFacade {
   }
 
   Future<String?> getUsername() async {
-  final prefs = await SharedPreferences.getInstance();
-  return prefs.getString("username");
-}
-
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString("username");
+  }
 }

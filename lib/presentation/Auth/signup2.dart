@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inkstop/application/signup/signup_bloc.dart';
+import 'package:inkstop/presentation/Auth/login_screen.dart';
 import 'package:inkstop/presentation/mainScreen/mainscreen.dart';
 
 class SignupPage2 extends StatefulWidget {
@@ -86,7 +87,7 @@ class _SignupPage2State extends State<SignupPage2> {
                             print("🔵 Executing Navigation...");
                             Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(
-                                  builder: (context) => const Homescreen()),
+                                  builder: (context) =>  LoginScreen()),
                               (route) => false, // ✅ Removes all previous routes
                             );
                           });

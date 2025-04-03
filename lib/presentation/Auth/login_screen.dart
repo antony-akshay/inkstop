@@ -107,8 +107,8 @@ class LoginScreen extends StatelessWidget {
                         LoginEvent.loginButtonPressed(
                             identifier: usernameStr.text,
                             password: passwordStr.text));
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => const Homescreen()));
+                    // Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    //     builder: (context) => const Homescreen()));
                   },
                   child: BlocConsumer<LoginBloc, LoginState>(
                     listener: (context, state) {
@@ -130,7 +130,7 @@ class LoginScreen extends StatelessWidget {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const Homescreen()));
+                                  builder: (context) =>  Homescreen(username: usernameStr.text,)));
                         });
                       });
                     },
